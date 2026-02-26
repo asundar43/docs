@@ -1,9 +1,9 @@
 ---
-summary: "Schema-accurate configuration examples for common SimpleClaw setups"
+summary: "Schema-accurate configuration examples for common OpenClaw setups"
 read_when:
-  - Learning how to configure SimpleClaw
+  - Learning how to configure OpenClaw
   - Looking for configuration examples
-  - Setting up SimpleClaw for the first time
+  - Setting up OpenClaw for the first time
 title: "Configuration Examples"
 ---
 
@@ -17,12 +17,12 @@ Examples below are aligned with the current config schema. For the exhaustive re
 
 ```json5
 {
-  agent: { workspace: "~/.simpleclaw/workspace" },
+  agent: { workspace: "~/.openclaw/workspace" },
   channels: { whatsapp: { allowFrom: ["+15555550123"] } },
 }
 ```
 
-Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
+Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
 
 ### Recommended starter
 
@@ -34,7 +34,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
     emoji: "🦞",
   },
   agent: {
-    workspace: "~/.simpleclaw/workspace",
+    workspace: "~/.openclaw/workspace",
     model: { primary: "anthropic/claude-sonnet-4-5" },
   },
   channels: {
@@ -93,7 +93,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
   // Logging
   logging: {
     level: "info",
-    file: "/tmp/simpleclaw/simpleclaw.log",
+    file: "/tmp/openclaw/openclaw.log",
     consoleLevel: "info",
     consoleStyle: "pretty",
     redactSensitive: "tools",
@@ -101,7 +101,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
 
   // Message formatting
   messages: {
-    messagePrefix: "[simpleclaw]",
+    messagePrefix: "[openclaw]",
     responsePrefix: ">",
     ackReaction: "👀",
     ackReactionScope: "group-mentions",
@@ -110,7 +110,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
   // Routing + queue
   routing: {
     groupChat: {
-      mentionPatterns: ["@simpleclaw", "simpleclaw"],
+      mentionPatterns: ["@openclaw", "openclaw"],
       historyLimit: 50,
     },
     queue: {
@@ -163,7 +163,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
       discord: { mode: "idle", idleMinutes: 10080 },
     },
     resetTriggers: ["/new", "/reset"],
-    store: "~/.simpleclaw/agents/default/sessions/sessions.json",
+    store: "~/.openclaw/agents/default/sessions/sessions.json",
     maintenance: {
       mode: "warn",
       pruneAfter: "30d",
@@ -205,7 +205,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
       dm: { enabled: true, allowFrom: ["123456789012345678"] },
       guilds: {
         "123456789012345678": {
-          slug: "friends-of-simpleclaw",
+          slug: "friends-of-openclaw",
           requireMention: false,
           channels: {
             general: { allow: true },
@@ -225,7 +225,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
       dm: { enabled: true, allowFrom: ["U123"] },
       slashCommand: {
         enabled: true,
-        name: "simpleclaw",
+        name: "openclaw",
         sessionPrefix: "slack:slash",
         ephemeral: true,
       },
@@ -235,7 +235,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
   // Agent runtime
   agents: {
     defaults: {
-      workspace: "~/.simpleclaw/workspace",
+      workspace: "~/.openclaw/workspace",
       userTimezone: "America/Chicago",
       model: {
         primary: "anthropic/claude-sonnet-4-5",
@@ -288,9 +288,9 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
       sandbox: {
         mode: "non-main",
         perSession: true,
-        workspaceRoot: "~/.simpleclaw/sandboxes",
+        workspaceRoot: "~/.openclaw/sandboxes",
         docker: {
-          image: "simpleclaw-sandbox:bookworm-slim",
+          image: "openclaw-sandbox:bookworm-slim",
           workdir: "/workspace",
           readOnlyRoot: true,
           tmpfs: ["/tmp", "/var/tmp", "/run"],
@@ -355,7 +355,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
   // Cron jobs
   cron: {
     enabled: true,
-    store: "~/.simpleclaw/cron/cron.json",
+    store: "~/.openclaw/cron/cron.json",
     maxConcurrentRuns: 2,
     sessionRetention: "24h",
     runLog: {
@@ -370,7 +370,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
     path: "/hooks",
     token: "shared-secret",
     presets: ["gmail"],
-    transformsDir: "~/.simpleclaw/hooks/transforms",
+    transformsDir: "~/.openclaw/hooks/transforms",
     mappings: [
       {
         id: "gmail-hook",
@@ -393,7 +393,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
       },
     ],
     gmail: {
-      account: "simpleclaw@gmail.com",
+      account: "openclaw@gmail.com",
       label: "INBOX",
       topic: "projects/<project-id>/topics/gog-gmail-watch",
       subscription: "gog-gmail-watch-push",
@@ -412,7 +412,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
     mode: "local",
     port: 18789,
     bind: "loopback",
-    controlUi: { enabled: true, basePath: "/simpleclaw" },
+    controlUi: { enabled: true, basePath: "/openclaw" },
     auth: {
       mode: "token",
       token: "gateway-token",
@@ -450,7 +450,7 @@ Save to `~/.simpleclaw/simpleclaw.json` and you can DM the bot from that number.
 
 ```json5
 {
-  agent: { workspace: "~/.simpleclaw/workspace" },
+  agent: { workspace: "~/.openclaw/workspace" },
   channels: {
     whatsapp: { allowFrom: ["+15555550123"] },
     telegram: {
@@ -517,7 +517,7 @@ Only enable direct mutable name/email/nick matching with each channel's `dangero
     },
   },
   agent: {
-    workspace: "~/.simpleclaw/workspace",
+    workspace: "~/.openclaw/workspace",
     model: {
       primary: "anthropic/claude-sonnet-4-5",
       fallbacks: ["anthropic/claude-opus-4-6"],
@@ -556,7 +556,7 @@ Only enable direct mutable name/email/nick matching with each channel's `dangero
     },
   },
   agent: {
-    workspace: "~/.simpleclaw/workspace",
+    workspace: "~/.openclaw/workspace",
     model: {
       primary: "anthropic/claude-opus-4-6",
       fallbacks: ["minimax/MiniMax-M2.1"],
@@ -574,7 +574,7 @@ Only enable direct mutable name/email/nick matching with each channel's `dangero
     theme: "professional assistant",
   },
   agent: {
-    workspace: "~/work-simpleclaw",
+    workspace: "~/work-openclaw",
     elevated: { enabled: false },
   },
   channels: {
@@ -595,7 +595,7 @@ Only enable direct mutable name/email/nick matching with each channel's `dangero
 ```json5
 {
   agent: {
-    workspace: "~/.simpleclaw/workspace",
+    workspace: "~/.openclaw/workspace",
     model: { primary: "lmstudio/minimax-m2.1-gs32" },
   },
   models: {

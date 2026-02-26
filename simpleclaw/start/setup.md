@@ -1,5 +1,5 @@
 ---
-summary: "Advanced setup and development workflows for SimpleClaw"
+summary: "Advanced setup and development workflows for OpenClaw"
 read_when:
   - Setting up a new machine
   - You want “latest + greatest” without breaking your personal setup
@@ -17,7 +17,7 @@ Last updated: 2026-01-01
 
 ## TL;DR
 
-- **Tailoring lives outside the repo:** `~/.simpleclaw/workspace` (workspace) + `~/.simpleclaw/simpleclaw.json` (config).
+- **Tailoring lives outside the repo:** `~/.openclaw/workspace` (workspace) + `~/.openclaw/openclaw.json` (config).
 - **Stable workflow:** install the macOS app; let it run the bundled Gateway.
 - **Bleeding edge workflow:** run the Gateway yourself via `pnpm gateway:watch`, then let the macOS app attach in Local mode.
 
@@ -31,51 +31,51 @@ Last updated: 2026-01-01
 
 If you want “100% tailored to me” _and_ easy updates, keep your customization in:
 
-- **Config:** `~/.simpleclaw/simpleclaw.json` (JSON/JSON5-ish)
-- **Workspace:** `~/.simpleclaw/workspace` (skills, prompts, memories; make it a private git repo)
+- **Config:** `~/.openclaw/openclaw.json` (JSON/JSON5-ish)
+- **Workspace:** `~/.openclaw/workspace` (skills, prompts, memories; make it a private git repo)
 
 Bootstrap once:
 
 ```bash
-simpleclaw setup
+openclaw setup
 ```
 
 From inside this repo, use the local CLI entry:
 
 ```bash
-simpleclaw setup
+openclaw setup
 ```
 
-If you don’t have a global install yet, run it via `pnpm simpleclaw setup`.
+If you don’t have a global install yet, run it via `pnpm openclaw setup`.
 
 ## Run the Gateway from this repo
 
 After `pnpm build`, you can run the packaged CLI directly:
 
 ```bash
-node simpleclaw.mjs gateway --port 18789 --verbose
+node openclaw.mjs gateway --port 18789 --verbose
 ```
 
 ## Stable workflow (macOS app first)
 
-1. Install + launch **SimpleClaw.app** (menu bar).
+1. Install + launch **OpenClaw.app** (menu bar).
 2. Complete the onboarding/permissions checklist (TCC prompts).
 3. Ensure Gateway is **Local** and running (the app manages it).
 4. Link surfaces (example: WhatsApp):
 
 ```bash
-simpleclaw channels login
+openclaw channels login
 ```
 
 5. Sanity check:
 
 ```bash
-simpleclaw health
+openclaw health
 ```
 
 If onboarding is not available in your build:
 
-- Run `simpleclaw setup`, then `simpleclaw channels login`, then start the Gateway manually (`simpleclaw gateway`).
+- Run `openclaw setup`, then `openclaw channels login`, then start the Gateway manually (`openclaw gateway`).
 
 ## Bleeding edge workflow (Gateway in a terminal)
 
@@ -100,7 +100,7 @@ pnpm gateway:watch
 
 ### 2) Point the macOS app at your running Gateway
 
-In **SimpleClaw.app**:
+In **OpenClaw.app**:
 
 - Connection Mode: **Local**
   The app will attach to the running gateway on the configured port.
@@ -111,33 +111,33 @@ In **SimpleClaw.app**:
 - Or via CLI:
 
 ```bash
-simpleclaw health
+openclaw health
 ```
 
 ### Common footguns
 
 - **Wrong port:** Gateway WS defaults to `ws://127.0.0.1:18789`; keep app + CLI on the same port.
 - **Where state lives:**
-  - Credentials: `~/.simpleclaw/credentials/`
-  - Sessions: `~/.simpleclaw/agents/<agentId>/sessions/`
-  - Logs: `/tmp/simpleclaw/`
+  - Credentials: `~/.openclaw/credentials/`
+  - Sessions: `~/.openclaw/agents/<agentId>/sessions/`
+  - Logs: `/tmp/openclaw/`
 
 ## Credential storage map
 
 Use this when debugging auth or deciding what to back up:
 
-- **WhatsApp**: `~/.simpleclaw/credentials/whatsapp/<accountId>/creds.json`
+- **WhatsApp**: `~/.openclaw/credentials/whatsapp/<accountId>/creds.json`
 - **Telegram bot token**: config/env or `channels.telegram.tokenFile`
 - **Discord bot token**: config/env (token file not yet supported)
 - **Slack tokens**: config/env (`channels.slack.*`)
-- **Pairing allowlists**: `~/.simpleclaw/credentials/<channel>-allowFrom.json`
-- **Model auth profiles**: `~/.simpleclaw/agents/<agentId>/agent/auth-profiles.json`
-- **Legacy OAuth import**: `~/.simpleclaw/credentials/oauth.json`
+- **Pairing allowlists**: `~/.openclaw/credentials/<channel>-allowFrom.json`
+- **Model auth profiles**: `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`
+- **Legacy OAuth import**: `~/.openclaw/credentials/oauth.json`
   More detail: [Security](/gateway/security#credential-storage-map).
 
 ## Updating (without wrecking your setup)
 
-- Keep `~/.simpleclaw/workspace` and `~/.simpleclaw/` as “your stuff”; don’t put personal prompts/config into the `simpleclaw` repo.
+- Keep `~/.openclaw/workspace` and `~/.openclaw/` as “your stuff”; don’t put personal prompts/config into the `openclaw` repo.
 - Updating source: `git pull` + `pnpm install` (when lockfile changed) + keep using `pnpm gateway:watch`.
 
 ## Linux (systemd user service)
@@ -158,5 +158,5 @@ user service (no lingering needed). See [Gateway runbook](/gateway) for the syst
 - [Gateway runbook](/gateway) (flags, supervision, ports)
 - [Gateway configuration](/gateway/configuration) (config schema + examples)
 - [Discord](/channels/discord) and [Telegram](/channels/telegram) (reply tags + replyToMode settings)
-- [SimpleClaw assistant setup](/start/simpleclaw)
+- [OpenClaw assistant setup](/start/openclaw)
 - [macOS app](/platforms/macos) (gateway lifecycle)

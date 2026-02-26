@@ -47,7 +47,7 @@ Supported keys:
 - `seed`, `normalize`, `lang`, `output_format`, `latency_tier`
 - `once`
 
-## Config (`~/.simpleclaw/simpleclaw.json`)
+## Config (`~/.openclaw/openclaw.json`)
 
 ```json5
 {

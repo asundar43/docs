@@ -1,5 +1,5 @@
 ---
-summary: "How SimpleClaw presence entries are produced, merged, and displayed"
+summary: "How OpenClaw presence entries are produced, merged, and displayed"
 read_when:
   - Debugging the Instances tab
   - Investigating duplicate or stale instance rows
@@ -9,7 +9,7 @@ title: "Presence"
 
 # Presence
 
-SimpleClaw “presence” is a lightweight, best‑effort view of:
+OpenClaw “presence” is a lightweight, best‑effort view of:
 
 - the **Gateway** itself, and
 - **clients connected to the Gateway** (mac app, WebChat, CLI, etc.)

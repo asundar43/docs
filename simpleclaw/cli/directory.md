@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `simpleclaw directory` (self, peers, groups)"
+summary: "CLI reference for `openclaw directory` (self, peers, groups)"
 read_when:
   - You want to look up contacts/groups/self ids for a channel
   - You are developing a channel directory adapter
 title: "directory"
 ---
 
-# `simpleclaw directory`
+# `openclaw directory`
 
 Directory lookups for channels that support it (contacts/peers, groups, and “me”).
 
@@ -18,15 +18,15 @@ Directory lookups for channels that support it (contacts/peers, groups, and “m
 
 ## Notes
 
-- `directory` is meant to help you find IDs you can paste into other commands (especially `simpleclaw message send --target ...`).
+- `directory` is meant to help you find IDs you can paste into other commands (especially `openclaw message send --target ...`).
 - For many channels, results are config-backed (allowlists / configured groups) rather than a live provider directory.
 - Default output is `id` (and sometimes `name`) separated by a tab; use `--json` for scripting.
 
 ## Using results with `message send`
 
 ```bash
-simpleclaw directory peers list --channel slack --query "U0"
-simpleclaw message send --channel slack --target user:U012ABCDEF --message "hello"
+openclaw directory peers list --channel slack --query "U0"
+openclaw message send --channel slack --target user:U012ABCDEF --message "hello"
 ```
 
 ## ID formats (by channel)
@@ -43,21 +43,21 @@ simpleclaw message send --channel slack --target user:U012ABCDEF --message "hell
 ## Self (“me”)
 
 ```bash
-simpleclaw directory self --channel zalouser
+openclaw directory self --channel zalouser
 ```
 
 ## Peers (contacts/users)
 
 ```bash
-simpleclaw directory peers list --channel zalouser
-simpleclaw directory peers list --channel zalouser --query "name"
-simpleclaw directory peers list --channel zalouser --limit 50
+openclaw directory peers list --channel zalouser
+openclaw directory peers list --channel zalouser --query "name"
+openclaw directory peers list --channel zalouser --limit 50
 ```
 
 ## Groups
 
 ```bash
-simpleclaw directory groups list --channel zalouser
-simpleclaw directory groups list --channel zalouser --query "work"
-simpleclaw directory groups members --channel zalouser --group-id <id>
+openclaw directory groups list --channel zalouser
+openclaw directory groups list --channel zalouser --query "work"
+openclaw directory groups members --channel zalouser --group-id <id>
 ```

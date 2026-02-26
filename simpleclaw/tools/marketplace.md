@@ -51,12 +51,12 @@ Add the private registry settings to your SimpleClaw config (`~/.simpleclaw/conf
 }
 ```
 
-| Field | Description |
-|-------|-------------|
-| `npmRegistry` | GAR npm registry URL (for plugin installs) |
-| `catalogUrl` | GCS or HTTPS URL to the catalog JSON file |
-| `authMethod` | `"gcloud-adc"` (recommended), `"token"`, or `"npmrc"` |
-| `authToken` | Static bearer token (only needed if `authMethod` is `"token"`) |
+| Field         | Description                                                    |
+| ------------- | -------------------------------------------------------------- |
+| `npmRegistry` | GAR npm registry URL (for plugin installs)                     |
+| `catalogUrl`  | GCS or HTTPS URL to the catalog JSON file                      |
+| `authMethod`  | `"gcloud-adc"` (recommended), `"token"`, or `"npmrc"`          |
+| `authToken`   | Static bearer token (only needed if `authMethod` is `"token"`) |
 
 ## CLI commands
 
@@ -191,13 +191,13 @@ simpleclaw marketplace list
 
 ## Marketplace vs ClawHub
 
-| | Marketplace | ClawHub |
-|---|---|---|
-| **Scope** | Private, vetted skills | Public, community skills |
-| **Auth** | GCP credentials | GitHub account |
-| **Skills format** | `.tar.gz` on GCS | `.tar.gz` via ClawHub API |
-| **Plugins** | npm packages on GAR | Not supported |
-| **Discovery** | Catalog-based | Vector search |
-| **Priority** | Higher (managed dir) | Depends on install location |
+|                   | Marketplace            | ClawHub                     |
+| ----------------- | ---------------------- | --------------------------- |
+| **Scope**         | Private, vetted skills | Public, community skills    |
+| **Auth**          | GCP credentials        | GitHub account              |
+| **Skills format** | `.tar.gz` on GCS       | `.tar.gz` via ClawHub API   |
+| **Plugins**       | npm packages on GAR    | Not supported               |
+| **Discovery**     | Catalog-based          | Vector search               |
+| **Priority**      | Higher (managed dir)   | Depends on install location |
 
 Both can coexist. Marketplace skills take priority when names overlap with ClawHub-installed skills in the workspace.

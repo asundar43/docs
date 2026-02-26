@@ -1,7 +1,7 @@
 ---
-summary: "Use OpenAI via API keys or Codex subscription in SimpleClaw"
+summary: "Use OpenAI via API keys or Codex subscription in OpenClaw"
 read_when:
-  - You want to use OpenAI models in SimpleClaw
+  - You want to use OpenAI models in OpenClaw
   - You want Codex subscription auth instead of API keys
 title: "OpenAI"
 ---
@@ -19,9 +19,9 @@ Get your API key from the OpenAI dashboard.
 ### CLI setup
 
 ```bash
-simpleclaw onboard --auth-choice openai-api-key
+openclaw onboard --auth-choice openai-api-key
 # or non-interactive
-simpleclaw onboard --openai-api-key "$OPENAI_API_KEY"
+openclaw onboard --openai-api-key "$OPENAI_API_KEY"
 ```
 
 ### Config snippet
@@ -42,10 +42,10 @@ Codex cloud requires ChatGPT sign-in, while the Codex CLI supports ChatGPT or AP
 
 ```bash
 # Run Codex OAuth in the wizard
-simpleclaw onboard --auth-choice openai-codex
+openclaw onboard --auth-choice openai-codex
 
 # Or run OAuth directly
-simpleclaw models auth login --provider openai-codex
+openclaw models auth login --provider openai-codex
 ```
 
 ### Config snippet (Codex subscription)

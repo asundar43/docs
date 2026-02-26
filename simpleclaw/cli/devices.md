@@ -1,78 +1,78 @@
 ---
-summary: "CLI reference for `simpleclaw devices` (device pairing + token rotation/revocation)"
+summary: "CLI reference for `openclaw devices` (device pairing + token rotation/revocation)"
 read_when:
   - You are approving device pairing requests
   - You need to rotate or revoke device tokens
 title: "devices"
 ---
 
-# `simpleclaw devices`
+# `openclaw devices`
 
 Manage device pairing requests and device-scoped tokens.
 
 ## Commands
 
-### `simpleclaw devices list`
+### `openclaw devices list`
 
 List pending pairing requests and paired devices.
 
 ```
-simpleclaw devices list
-simpleclaw devices list --json
+openclaw devices list
+openclaw devices list --json
 ```
 
-### `simpleclaw devices remove <deviceId>`
+### `openclaw devices remove <deviceId>`
 
 Remove one paired device entry.
 
 ```
-simpleclaw devices remove <deviceId>
-simpleclaw devices remove <deviceId> --json
+openclaw devices remove <deviceId>
+openclaw devices remove <deviceId> --json
 ```
 
-### `simpleclaw devices clear --yes [--pending]`
+### `openclaw devices clear --yes [--pending]`
 
 Clear paired devices in bulk.
 
 ```
-simpleclaw devices clear --yes
-simpleclaw devices clear --yes --pending
-simpleclaw devices clear --yes --pending --json
+openclaw devices clear --yes
+openclaw devices clear --yes --pending
+openclaw devices clear --yes --pending --json
 ```
 
-### `simpleclaw devices approve [requestId] [--latest]`
+### `openclaw devices approve [requestId] [--latest]`
 
-Approve a pending device pairing request. If `requestId` is omitted, SimpleClaw
+Approve a pending device pairing request. If `requestId` is omitted, OpenClaw
 automatically approves the most recent pending request.
 
 ```
-simpleclaw devices approve
-simpleclaw devices approve <requestId>
-simpleclaw devices approve --latest
+openclaw devices approve
+openclaw devices approve <requestId>
+openclaw devices approve --latest
 ```
 
-### `simpleclaw devices reject <requestId>`
+### `openclaw devices reject <requestId>`
 
 Reject a pending device pairing request.
 
 ```
-simpleclaw devices reject <requestId>
+openclaw devices reject <requestId>
 ```
 
-### `simpleclaw devices rotate --device <id> --role <role> [--scope <scope...>]`
+### `openclaw devices rotate --device <id> --role <role> [--scope <scope...>]`
 
 Rotate a device token for a specific role (optionally updating scopes).
 
 ```
-simpleclaw devices rotate --device <deviceId> --role operator --scope operator.read --scope operator.write
+openclaw devices rotate --device <deviceId> --role operator --scope operator.read --scope operator.write
 ```
 
-### `simpleclaw devices revoke --device <id> --role <role>`
+### `openclaw devices revoke --device <id> --role <role>`
 
 Revoke a device token for a specific role.
 
 ```
-simpleclaw devices revoke --device <deviceId> --role node
+openclaw devices revoke --device <deviceId> --role node
 ```
 
 ## Common options

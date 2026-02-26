@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `simpleclaw node` (headless node host)"
+summary: "CLI reference for `openclaw node` (headless node host)"
 read_when:
   - Running the headless node host
   - Pairing a non-macOS node for system.run
 title: "node"
 ---
 
-# `simpleclaw node`
+# `openclaw node`
 
 Run a **headless node host** that connects to the Gateway WebSocket and exposes
 `system.run` / `system.which` on this machine.
@@ -46,7 +46,7 @@ Disable it on the node if needed:
 ## Run (foreground)
 
 ```bash
-simpleclaw node run --host <gateway-host> --port 18789
+openclaw node run --host <gateway-host> --port 18789
 ```
 
 Options:
@@ -63,7 +63,7 @@ Options:
 Install a headless node host as a user service.
 
 ```bash
-simpleclaw node install --host <gateway-host> --port 18789
+openclaw node install --host <gateway-host> --port 18789
 ```
 
 Options:
@@ -80,13 +80,13 @@ Options:
 Manage the service:
 
 ```bash
-simpleclaw node status
-simpleclaw node stop
-simpleclaw node restart
-simpleclaw node uninstall
+openclaw node status
+openclaw node stop
+openclaw node restart
+openclaw node uninstall
 ```
 
-Use `simpleclaw node run` for a foreground node host (no service).
+Use `openclaw node run` for a foreground node host (no service).
 
 Service commands accept `--json` for machine-readable output.
 
@@ -96,17 +96,17 @@ The first connection creates a pending node pair request on the Gateway.
 Approve it via:
 
 ```bash
-simpleclaw nodes pending
-simpleclaw nodes approve <requestId>
+openclaw nodes pending
+openclaw nodes approve <requestId>
 ```
 
 The node host stores its node id, token, display name, and gateway connection info in
-`~/.simpleclaw/node.json`.
+`~/.openclaw/node.json`.
 
 ## Exec approvals
 
 `system.run` is gated by local exec approvals:
 
-- `~/.simpleclaw/exec-approvals.json`
+- `~/.openclaw/exec-approvals.json`
 - [Exec approvals](/tools/exec-approvals)
-- `simpleclaw approvals --node <id|name|ip>` (edit from the Gateway)
+- `openclaw approvals --node <id|name|ip>` (edit from the Gateway)

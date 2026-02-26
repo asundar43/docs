@@ -1,7 +1,7 @@
 ---
-summary: "Use Xiaomi MiMo (mimo-v2-flash) with SimpleClaw"
+summary: "Use Xiaomi MiMo (mimo-v2-flash) with OpenClaw"
 read_when:
-  - You want Xiaomi MiMo models in SimpleClaw
+  - You want Xiaomi MiMo models in OpenClaw
   - You need XIAOMI_API_KEY setup
 title: "Xiaomi MiMo"
 ---
@@ -10,7 +10,7 @@ title: "Xiaomi MiMo"
 
 Xiaomi MiMo is the API platform for **MiMo** models. It provides REST APIs compatible with
 OpenAI and Anthropic formats and uses API keys for authentication. Create your API key in
-the [Xiaomi MiMo console](https://platform.xiaomimimo.com/#/console/api-keys). SimpleClaw uses
+the [Xiaomi MiMo console](https://platform.xiaomimimo.com/#/console/api-keys). OpenClaw uses
 the `xiaomi` provider with a Xiaomi MiMo API key.
 
 ## Model overview
@@ -22,9 +22,9 @@ the `xiaomi` provider with a Xiaomi MiMo API key.
 ## CLI setup
 
 ```bash
-simpleclaw onboard --auth-choice xiaomi-api-key
+openclaw onboard --auth-choice xiaomi-api-key
 # or non-interactive
-simpleclaw onboard --auth-choice xiaomi-api-key --xiaomi-api-key "$XIAOMI_API_KEY"
+openclaw onboard --auth-choice xiaomi-api-key --xiaomi-api-key "$XIAOMI_API_KEY"
 ```
 
 ## Config snippet

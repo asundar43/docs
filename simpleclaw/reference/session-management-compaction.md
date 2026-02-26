@@ -9,7 +9,7 @@ title: "Session Management Deep Dive"
 
 # Session Management & Compaction (Deep Dive)
 
-This document explains how SimpleClaw manages sessions end-to-end:
+This document explains how OpenClaw manages sessions end-to-end:
 
 - **Session routing** (how inbound messages map to a `sessionKey`)
 - **Session store** (`sessions.json`) and what it tracks
@@ -30,7 +30,7 @@ If you want a higher-level overview first, start with:
 
 ## Source of truth: the Gateway
 
-SimpleClaw is designed around a single **Gateway process** that owns session state.
+OpenClaw is designed around a single **Gateway process** that owns session state.
 
 - UIs (macOS app, web Control UI, TUI) should query the Gateway for session lists and token counts.
 - In remote mode, session files are on the remote host; “checking your local Mac files” won’t reflect what the Gateway is using.
@@ -39,7 +39,7 @@ SimpleClaw is designed around a single **Gateway process** that owns session sta
 
 ## Two persistence layers
 
-SimpleClaw persists sessions in two layers:
+OpenClaw persists sessions in two layers:
 
 1. **Session store (`sessions.json`)**
    - Key/value map: `sessionKey -> SessionEntry`
@@ -57,11 +57,11 @@ SimpleClaw persists sessions in two layers:
 
 Per agent, on the Gateway host:
 
-- Store: `~/.simpleclaw/agents/<agentId>/sessions/sessions.json`
-- Transcripts: `~/.simpleclaw/agents/<agentId>/sessions/<sessionId>.jsonl`
+- Store: `~/.openclaw/agents/<agentId>/sessions/sessions.json`
+- Transcripts: `~/.openclaw/agents/<agentId>/sessions/<sessionId>.jsonl`
   - Telegram topic sessions: `.../<sessionId>-topic-<threadId>.jsonl`
 
-SimpleClaw resolves these via `src/config/sessions.ts`.
+OpenClaw resolves these via `src/config/sessions.ts`.
 
 ---
 
@@ -83,13 +83,13 @@ Enforcement order for disk budget cleanup (`mode: "enforce"`):
 2. If still above the target, evict oldest session entries and their transcript files.
 3. Keep going until usage is at or below `highWaterBytes`.
 
-In `mode: "warn"`, SimpleClaw reports potential evictions but does not mutate the store/files.
+In `mode: "warn"`, OpenClaw reports potential evictions but does not mutate the store/files.
 
 Run maintenance on demand:
 
 ```bash
-simpleclaw sessions cleanup --dry-run
-simpleclaw sessions cleanup --enforce
+openclaw sessions cleanup --dry-run
+openclaw sessions cleanup --enforce
 ```
 
 ---
@@ -99,7 +99,7 @@ simpleclaw sessions cleanup --enforce
 Isolated cron runs also create session entries/transcripts, and they have dedicated retention controls:
 
 - `cron.sessionRetention` (default `24h`) prunes old isolated cron run sessions from the session store (`false` disables).
-- `cron.runLog.maxBytes` + `cron.runLog.keepLines` prune `~/.simpleclaw/cron/runs/<jobId>.jsonl` files (defaults: `2_000_000` bytes and `2000` lines).
+- `cron.runLog.maxBytes` + `cron.runLog.keepLines` prune `~/.openclaw/cron/runs/<jobId>.jsonl` files (defaults: `2_000_000` bytes and `2000` lines).
 
 ---
 
@@ -176,7 +176,7 @@ Notable entry types:
 - `compaction`: persisted compaction summary with `firstKeptEntryId` and `tokensBefore`
 - `branch_summary`: persisted summary when navigating a tree branch
 
-SimpleClaw intentionally does **not** “fix up” transcripts; the Gateway uses `SessionManager` to read/write them.
+OpenClaw intentionally does **not** “fix up” transcripts; the Gateway uses `SessionManager` to read/write them.
 
 ---
 
@@ -223,7 +223,7 @@ Where:
 - `contextWindow` is the model’s context window
 - `reserveTokens` is headroom reserved for prompts + the next model output
 
-These are Pi runtime semantics (SimpleClaw consumes the events, but Pi decides when to compact).
+These are Pi runtime semantics (OpenClaw consumes the events, but Pi decides when to compact).
 
 ---
 
@@ -241,12 +241,12 @@ Pi’s compaction settings live in Pi settings:
 }
 ```
 
-SimpleClaw also enforces a safety floor for embedded runs:
+OpenClaw also enforces a safety floor for embedded runs:
 
-- If `compaction.reserveTokens < reserveTokensFloor`, SimpleClaw bumps it.
+- If `compaction.reserveTokens < reserveTokensFloor`, OpenClaw bumps it.
 - Default floor is `20000` tokens.
 - Set `agents.defaults.compaction.reserveTokensFloor: 0` to disable the floor.
-- If it’s already higher, SimpleClaw leaves it alone.
+- If it’s already higher, OpenClaw leaves it alone.
 
 Why: leave enough headroom for multi-turn “housekeeping” (like memory writes) before compaction becomes unavoidable.
 
@@ -260,22 +260,22 @@ Implementation: `ensurePiCompactionReserveTokens()` in `src/agents/pi-settings.t
 You can observe compaction and session state via:
 
 - `/status` (in any chat session)
-- `simpleclaw status` (CLI)
-- `simpleclaw sessions` / `sessions --json`
+- `openclaw status` (CLI)
+- `openclaw sessions` / `sessions --json`
 - Verbose mode: `🧹 Auto-compaction complete` + compaction count
 
 ---
 
 ## Silent housekeeping (`NO_REPLY`)
 
-SimpleClaw supports “silent” turns for background tasks where the user should not see intermediate output.
+OpenClaw supports “silent” turns for background tasks where the user should not see intermediate output.
 
 Convention:
 
 - The assistant starts its output with `NO_REPLY` to indicate “do not deliver a reply to the user”.
-- SimpleClaw strips/suppresses this in the delivery layer.
+- OpenClaw strips/suppresses this in the delivery layer.
 
-As of `2026.1.10`, SimpleClaw also suppresses **draft/typing streaming** when a partial chunk begins with `NO_REPLY`, so silent operations don’t leak partial output mid-turn.
+As of `2026.1.10`, OpenClaw also suppresses **draft/typing streaming** when a partial chunk begins with `NO_REPLY`, so silent operations don’t leak partial output mid-turn.
 
 ---
 
@@ -285,7 +285,7 @@ Goal: before auto-compaction happens, run a silent agentic turn that writes dura
 state to disk (e.g. `memory/YYYY-MM-DD.md` in the agent workspace) so compaction can’t
 erase critical context.
 
-SimpleClaw uses the **pre-threshold flush** approach:
+OpenClaw uses the **pre-threshold flush** approach:
 
 1. Monitor session context usage.
 2. When it crosses a “soft threshold” (below Pi’s compaction threshold), run a silent
@@ -307,7 +307,7 @@ Notes:
 - The flush is skipped when the session workspace is read-only (`workspaceAccess: "ro"` or `"none"`).
 - See [Memory](/concepts/memory) for the workspace file layout and write patterns.
 
-Pi also exposes a `session_before_compact` hook in the extension API, but SimpleClaw’s
+Pi also exposes a `session_before_compact` hook in the extension API, but OpenClaw’s
 flush logic lives on the Gateway side today.
 
 ---
@@ -315,7 +315,7 @@ flush logic lives on the Gateway side today.
 ## Troubleshooting checklist
 
 - Session key wrong? Start with [/concepts/session](/concepts/session) and confirm the `sessionKey` in `/status`.
-- Store vs transcript mismatch? Confirm the Gateway host and the store path from `simpleclaw status`.
+- Store vs transcript mismatch? Confirm the Gateway host and the store path from `openclaw status`.
 - Compaction spam? Check:
   - model context window (too small)
   - compaction settings (`reserveTokens` too high for the model window can cause earlier compaction)

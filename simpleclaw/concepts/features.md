@@ -1,7 +1,7 @@
 ---
-summary: "SimpleClaw capabilities across channels, routing, media, marketplace, and UX."
+summary: "OpenClaw capabilities across channels, routing, media, and UX."
 read_when:
-  - You want a full list of what SimpleClaw supports
+  - You want a full list of what OpenClaw supports
 title: "Features"
 ---
 
@@ -20,11 +20,11 @@ title: "Features"
   <Card title="Media" icon="image">
     Images, audio, and documents in and out.
   </Card>
-  <Card title="Web Control UI" icon="monitor">
-    Browser dashboard for chat, config, and sessions.
+  <Card title="Apps and UI" icon="monitor">
+    Web Control UI and macOS companion app.
   </Card>
-  <Card title="Skill marketplace" icon="store">
-    Private catalog of curated skills and plugins via GAR and GCS.
+  <Card title="Mobile nodes" icon="smartphone">
+    iOS and Android nodes with Canvas support.
   </Card>
 </Columns>
 
@@ -43,9 +43,9 @@ title: "Features"
 - Group chat support with mention based activation
 - Media support for images, audio, and documents
 - Optional voice note transcription hook
-- WebChat browser interface
-- Private skill marketplace backed by Google Artifact Registry and Google Cloud Storage
-- Marketplace CLI: `simpleclaw marketplace list`, `search`, `install`, `sync`, `publish`
+- WebChat and macOS menu bar app
+- iOS node with pairing and Canvas surface
+- Android node with pairing, Canvas, chat, and camera
 
 <Note>
 Legacy Claude, Codex, Gemini, and Opencode paths have been removed. Pi is the only

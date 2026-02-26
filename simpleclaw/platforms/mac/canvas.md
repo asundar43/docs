@@ -17,17 +17,17 @@ UI surfaces.
 
 Canvas state is stored under Application Support:
 
-- `~/Library/Application Support/SimpleClaw/canvas/<session>/...`
+- `~/Library/Application Support/OpenClaw/canvas/<session>/...`
 
 The Canvas panel serves those files via a **custom URL scheme**:
 
-- `simpleclaw-canvas://<session>/<path>`
+- `openclaw-canvas://<session>/<path>`
 
 Examples:
 
-- `simpleclaw-canvas://main/` → `<canvasRoot>/main/index.html`
-- `simpleclaw-canvas://main/assets/app.css` → `<canvasRoot>/main/assets/app.css`
-- `simpleclaw-canvas://main/widgets/todo/` → `<canvasRoot>/main/widgets/todo/index.html`
+- `openclaw-canvas://main/` → `<canvasRoot>/main/index.html`
+- `openclaw-canvas://main/assets/app.css` → `<canvasRoot>/main/assets/app.css`
+- `openclaw-canvas://main/widgets/todo/` → `<canvasRoot>/main/widgets/todo/index.html`
 
 If no `index.html` exists at the root, the app shows a **built‑in scaffold page**.
 
@@ -53,10 +53,10 @@ Canvas is exposed via the **Gateway WebSocket**, so the agent can:
 CLI examples:
 
 ```bash
-simpleclaw nodes canvas present --node <id>
-simpleclaw nodes canvas navigate --node <id> --url "/"
-simpleclaw nodes canvas eval --node <id> --js "document.title"
-simpleclaw nodes canvas snapshot --node <id>
+openclaw nodes canvas present --node <id>
+openclaw nodes canvas navigate --node <id> --url "/"
+openclaw nodes canvas eval --node <id> --js "document.title"
+openclaw nodes canvas snapshot --node <id>
 ```
 
 Notes:
@@ -73,7 +73,7 @@ A2UI host page on first open.
 Default A2UI host URL:
 
 ```
-http://<gateway-host>:18789/__simpleclaw__/a2ui/
+http://<gateway-host>:18789/__openclaw__/a2ui/
 ```
 
 ### A2UI commands (v0.8)
@@ -95,25 +95,25 @@ cat > /tmp/a2ui-v0.8.jsonl <<'EOFA2'
 {"beginRendering":{"surfaceId":"main","root":"root"}}
 EOFA2
 
-simpleclaw nodes canvas a2ui push --jsonl /tmp/a2ui-v0.8.jsonl --node <id>
+openclaw nodes canvas a2ui push --jsonl /tmp/a2ui-v0.8.jsonl --node <id>
 ```
 
 Quick smoke:
 
 ```bash
-simpleclaw nodes canvas a2ui push --node <id> --text "Hello from A2UI"
+openclaw nodes canvas a2ui push --node <id> --text "Hello from A2UI"
 ```
 
 ## Triggering agent runs from Canvas
 
 Canvas can trigger new agent runs via deep links:
 
-- `simpleclaw://agent?...`
+- `openclaw://agent?...`
 
 Example (in JS):
 
 ```js
-window.location.href = "simpleclaw://agent?message=Review%20this%20design";
+window.location.href = "openclaw://agent?message=Review%20this%20design";
 ```
 
 The app prompts for confirmation unless a valid key is provided.

@@ -1,16 +1,16 @@
 ---
-summary: "SimpleClaw on DigitalOcean (simple paid VPS option)"
+summary: "OpenClaw on DigitalOcean (simple paid VPS option)"
 read_when:
-  - Setting up SimpleClaw on DigitalOcean
-  - Looking for cheap VPS hosting for SimpleClaw
+  - Setting up OpenClaw on DigitalOcean
+  - Looking for cheap VPS hosting for OpenClaw
 title: "DigitalOcean"
 ---
 
-# SimpleClaw on DigitalOcean
+# OpenClaw on DigitalOcean
 
 ## Goal
 
-Run a persistent SimpleClaw Gateway on DigitalOcean for **$6/month** (or $4/mo with reserved pricing).
+Run a persistent OpenClaw Gateway on DigitalOcean for **$6/month** (or $4/mo with reserved pricing).
 
 If you want a $0/month option and don’t mind ARM + provider-specific setup, see the [Oracle Cloud guide](/platforms/oracle).
 
@@ -60,7 +60,7 @@ Use a clean base image (Ubuntu 24.04 LTS). Avoid third-party Marketplace 1-click
 ssh root@YOUR_DROPLET_IP
 ```
 
-## 3) Install SimpleClaw
+## 3) Install OpenClaw
 
 ```bash
 # Update system
@@ -70,17 +70,17 @@ apt update && apt upgrade -y
 curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 apt install -y nodejs
 
-# Install SimpleClaw
-npm install -g simpleclaw --registry https://us-central1-npm.pkg.dev/jarvis-486806/simpleclaw-npm
+# Install OpenClaw
+curl -fsSL https://openclaw.ai/install.sh | bash
 
 # Verify
-simpleclaw --version
+openclaw --version
 ```
 
 ## 4) Run Onboarding
 
 ```bash
-simpleclaw onboard --install-daemon
+openclaw onboard --install-daemon
 ```
 
 The wizard will walk you through:
@@ -94,13 +94,13 @@ The wizard will walk you through:
 
 ```bash
 # Check status
-simpleclaw status
+openclaw status
 
 # Check service
-systemctl --user status simpleclaw-gateway.service
+systemctl --user status openclaw-gateway.service
 
 # View logs
-journalctl --user -u simpleclaw-gateway.service -f
+journalctl --user -u openclaw-gateway.service -f
 ```
 
 ## 6) Access the Dashboard
@@ -124,8 +124,8 @@ curl -fsSL https://tailscale.com/install.sh | sh
 tailscale up
 
 # Configure Gateway to use Tailscale Serve
-simpleclaw config set gateway.tailscale.mode serve
-simpleclaw gateway restart
+openclaw config set gateway.tailscale.mode serve
+openclaw gateway restart
 ```
 
 Open: `https://<magicdns>/`
@@ -138,8 +138,8 @@ Notes:
 **Option C: Tailnet bind (no Serve)**
 
 ```bash
-simpleclaw config set gateway.bind tailnet
-simpleclaw gateway restart
+openclaw config set gateway.bind tailnet
+openclaw gateway restart
 ```
 
 Open: `http://<tailscale-ip>:18789` (token required).
@@ -149,14 +149,14 @@ Open: `http://<tailscale-ip>:18789` (token required).
 ### Telegram
 
 ```bash
-simpleclaw pairing list telegram
-simpleclaw pairing approve telegram <CODE>
+openclaw pairing list telegram
+openclaw pairing approve telegram <CODE>
 ```
 
 ### WhatsApp
 
 ```bash
-simpleclaw channels login whatsapp
+openclaw channels login whatsapp
 # Scan QR code
 ```
 
@@ -198,13 +198,13 @@ htop
 
 All state lives in:
 
-- `~/.simpleclaw/` — config, credentials, session data
-- `~/.simpleclaw/workspace/` — workspace (SOUL.md, memory, etc.)
+- `~/.openclaw/` — config, credentials, session data
+- `~/.openclaw/workspace/` — workspace (SOUL.md, memory, etc.)
 
 These survive reboots. Back them up periodically:
 
 ```bash
-tar -czvf simpleclaw-backup.tar.gz ~/.simpleclaw ~/.simpleclaw/workspace
+tar -czvf openclaw-backup.tar.gz ~/.openclaw ~/.openclaw/workspace
 ```
 
 ---
@@ -234,9 +234,9 @@ For the full setup guide, see [Oracle Cloud](/platforms/oracle). For signup tips
 ### Gateway won't start
 
 ```bash
-simpleclaw gateway status
-simpleclaw doctor --non-interactive
-journalctl -u simpleclaw --no-pager -n 50
+openclaw gateway status
+openclaw doctor --non-interactive
+journalctl -u openclaw --no-pager -n 50
 ```
 
 ### Port already in use

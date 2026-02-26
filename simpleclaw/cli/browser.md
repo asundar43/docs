@@ -1,15 +1,15 @@
 ---
-summary: "CLI reference for `simpleclaw browser` (profiles, tabs, actions, extension relay)"
+summary: "CLI reference for `openclaw browser` (profiles, tabs, actions, extension relay)"
 read_when:
-  - You use `simpleclaw browser` and want examples for common tasks
+  - You use `openclaw browser` and want examples for common tasks
   - You want to control a browser running on another machine via a node host
   - You want to use the Chrome extension relay (attach/detach via toolbar button)
 title: "browser"
 ---
 
-# `simpleclaw browser`
+# `openclaw browser`
 
-Manage SimpleClaw’s browser control server and run browser actions (tabs, snapshots, screenshots, navigation, clicks, typing).
+Manage OpenClaw’s browser control server and run browser actions (tabs, snapshots, screenshots, navigation, clicks, typing).
 
 Related:
 
@@ -27,38 +27,38 @@ Related:
 ## Quick start (local)
 
 ```bash
-simpleclaw browser --browser-profile chrome tabs
-simpleclaw browser --browser-profile simpleclaw start
-simpleclaw browser --browser-profile simpleclaw open https://example.com
-simpleclaw browser --browser-profile simpleclaw snapshot
+openclaw browser --browser-profile chrome tabs
+openclaw browser --browser-profile openclaw start
+openclaw browser --browser-profile openclaw open https://example.com
+openclaw browser --browser-profile openclaw snapshot
 ```
 
 ## Profiles
 
 Profiles are named browser routing configs. In practice:
 
-- `simpleclaw`: launches/attaches to a dedicated SimpleClaw-managed Chrome instance (isolated user data dir).
+- `openclaw`: launches/attaches to a dedicated OpenClaw-managed Chrome instance (isolated user data dir).
 - `chrome`: controls your existing Chrome tab(s) via the Chrome extension relay.
 
 ```bash
-simpleclaw browser profiles
-simpleclaw browser create-profile --name work --color "#FF5A36"
-simpleclaw browser delete-profile --name work
+openclaw browser profiles
+openclaw browser create-profile --name work --color "#FF5A36"
+openclaw browser delete-profile --name work
 ```
 
 Use a specific profile:
 
 ```bash
-simpleclaw browser --browser-profile work tabs
+openclaw browser --browser-profile work tabs
 ```
 
 ## Tabs
 
 ```bash
-simpleclaw browser tabs
-simpleclaw browser open https://docs.simpleclaw.dev
-simpleclaw browser focus <targetId>
-simpleclaw browser close <targetId>
+openclaw browser tabs
+openclaw browser open https://docs.openclaw.ai
+openclaw browser focus <targetId>
+openclaw browser close <targetId>
 ```
 
 ## Snapshot / screenshot / actions
@@ -66,21 +66,21 @@ simpleclaw browser close <targetId>
 Snapshot:
 
 ```bash
-simpleclaw browser snapshot
+openclaw browser snapshot
 ```
 
 Screenshot:
 
 ```bash
-simpleclaw browser screenshot
+openclaw browser screenshot
 ```
 
 Navigate/click/type (ref-based UI automation):
 
 ```bash
-simpleclaw browser navigate https://example.com
-simpleclaw browser click <ref>
-simpleclaw browser type <ref> "hello"
+openclaw browser navigate https://example.com
+openclaw browser click <ref>
+openclaw browser type <ref> "hello"
 ```
 
 ## Chrome extension relay (attach via toolbar button)
@@ -90,8 +90,8 @@ This mode lets the agent control an existing Chrome tab that you attach manually
 Install the unpacked extension to a stable path:
 
 ```bash
-simpleclaw browser extension install
-simpleclaw browser extension path
+openclaw browser extension install
+openclaw browser extension path
 ```
 
 Then Chrome → `chrome://extensions` → enable “Developer mode” → “Load unpacked” → select the printed folder.

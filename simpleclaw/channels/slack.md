@@ -34,7 +34,7 @@ Status: production-ready for DMs + channels via Slack app integrations. Default 
         - install app and copy **Bot Token** (`xoxb-...`)
       </Step>
 
-      <Step title="Configure SimpleClaw">
+      <Step title="Configure OpenClaw">
 
 ```json5
 {
@@ -74,7 +74,7 @@ SLACK_BOT_TOKEN=xoxb-...
       <Step title="Start gateway">
 
 ```bash
-simpleclaw gateway
+openclaw gateway
 ```
 
       </Step>
@@ -92,7 +92,7 @@ simpleclaw gateway
 
       </Step>
 
-      <Step title="Configure SimpleClaw HTTP mode">
+      <Step title="Configure OpenClaw HTTP mode">
 
 ```json5
 {
@@ -152,7 +152,7 @@ For actions/directory reads, user token can be preferred when configured. For wr
     - `dm.groupEnabled` (group DMs default false)
     - `dm.groupChannels` (optional MPIM allowlist)
 
-    Pairing in DMs uses `simpleclaw pairing approve slack <code>`.
+    Pairing in DMs uses `openclaw pairing approve slack <code>`.
 
   </Tab>
 
@@ -214,7 +214,7 @@ For actions/directory reads, user token can be preferred when configured. For wr
 Default slash command settings:
 
 - `enabled: false`
-- `name: "simpleclaw"`
+- `name: "openclaw"`
 - `sessionPrefix: "slack:slash"`
 - `ephemeral: true`
 
@@ -302,7 +302,7 @@ Available action groups in current Slack tooling:
 
 ## Ack reactions
 
-`ackReaction` sends an acknowledgement emoji while SimpleClaw is processing an inbound message.
+`ackReaction` sends an acknowledgement emoji while OpenClaw is processing an inbound message.
 
 Resolution order:
 
@@ -324,12 +324,12 @@ Notes:
 ```json
 {
   "display_information": {
-    "name": "SimpleClaw",
-    "description": "Slack connector for SimpleClaw"
+    "name": "OpenClaw",
+    "description": "Slack connector for OpenClaw"
   },
   "features": {
     "bot_user": {
-      "display_name": "SimpleClaw",
+      "display_name": "OpenClaw",
       "always_online": false
     },
     "app_home": {
@@ -338,8 +338,8 @@ Notes:
     },
     "slash_commands": [
       {
-        "command": "/simpleclaw",
-        "description": "Send a message to SimpleClaw",
+        "command": "/openclaw",
+        "description": "Send a message to OpenClaw",
         "should_escape": false
       }
     ]
@@ -419,9 +419,9 @@ Notes:
     Useful commands:
 
 ```bash
-simpleclaw channels status --probe
-simpleclaw logs --follow
-simpleclaw doctor
+openclaw channels status --probe
+openclaw logs --follow
+openclaw doctor
 ```
 
   </Accordion>
@@ -434,7 +434,7 @@ simpleclaw doctor
     - pairing approvals / allowlist entries
 
 ```bash
-simpleclaw pairing list slack
+openclaw pairing list slack
 ```
 
   </Accordion>
@@ -466,7 +466,7 @@ simpleclaw pairing list slack
 
 ## Text streaming
 
-SimpleClaw supports Slack native text streaming via the Agents and AI Apps API.
+OpenClaw supports Slack native text streaming via the Agents and AI Apps API.
 
 `channels.slack.streaming` controls live preview behavior:
 
@@ -503,7 +503,7 @@ Legacy keys:
 - Later text chunks append to the same stream (`chat.appendStream`).
 - End of reply finalizes stream (`chat.stopStream`).
 - Media and non-text payloads fall back to normal delivery.
-- If streaming fails mid-reply, SimpleClaw falls back to normal delivery for remaining payloads.
+- If streaming fails mid-reply, OpenClaw falls back to normal delivery for remaining payloads.
 
 ## Configuration reference pointers
 

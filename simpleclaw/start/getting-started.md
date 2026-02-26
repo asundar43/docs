@@ -1,5 +1,5 @@
 ---
-summary: "Get SimpleClaw installed and run your first chat in minutes."
+summary: "Get OpenClaw installed and run your first chat in minutes."
 read_when:
   - First time setup from zero
   - You want the fastest path to a working chat
@@ -11,9 +11,9 @@ title: "Getting Started"
 Goal: go from zero to a first working chat with minimal setup.
 
 <Info>
-Fastest chat: open the Control UI (no channel setup needed). Run `simpleclaw dashboard`
+Fastest chat: open the Control UI (no channel setup needed). Run `openclaw dashboard`
 and chat in the browser, or open `http://127.0.0.1:18789/` on the
-<Tooltip headline="Gateway host" tip="The machine running the SimpleClaw gateway service.">gateway host</Tooltip>.
+<Tooltip headline="Gateway host" tip="The machine running the OpenClaw gateway service.">gateway host</Tooltip>.
 Docs: [Dashboard](/web/dashboard) and [Control UI](/web/control-ui).
 </Info>
 
@@ -28,10 +28,24 @@ Check your Node version with `node --version` if you are unsure.
 ## Quick setup (CLI)
 
 <Steps>
-  <Step title="Install SimpleClaw">
-    ```bash
-    npm install -g simpleclaw --registry https://us-central1-npm.pkg.dev/jarvis-486806/simpleclaw-npm
-    ```
+  <Step title="Install OpenClaw (recommended)">
+    <Tabs>
+      <Tab title="macOS/Linux">
+        ```bash
+        curl -fsSL https://openclaw.ai/install.sh | bash
+        ```
+        <img
+  src="/assets/install-script.svg"
+  alt="Install Script Process"
+  className="rounded-lg"
+/>
+      </Tab>
+      <Tab title="Windows (PowerShell)">
+        ```powershell
+        iwr -useb https://openclaw.ai/install.ps1 | iex
+        ```
+      </Tab>
+    </Tabs>
 
     <Note>
     Other install methods and requirements: [Install](/install).
@@ -40,7 +54,7 @@ Check your Node version with `node --version` if you are unsure.
   </Step>
   <Step title="Run the onboarding wizard">
     ```bash
-    simpleclaw onboard --install-daemon
+    openclaw onboard --install-daemon
     ```
 
     The wizard configures auth, gateway settings, and optional channels.
@@ -51,13 +65,13 @@ Check your Node version with `node --version` if you are unsure.
     If you installed the service, it should already be running:
 
     ```bash
-    simpleclaw gateway status
+    openclaw gateway status
     ```
 
   </Step>
   <Step title="Open the Control UI">
     ```bash
-    simpleclaw dashboard
+    openclaw dashboard
     ```
   </Step>
 </Steps>
@@ -73,7 +87,7 @@ If the Control UI loads, your Gateway is ready for use.
     Useful for quick tests or troubleshooting.
 
     ```bash
-    simpleclaw gateway --port 18789
+    openclaw gateway --port 18789
     ```
 
   </Accordion>
@@ -81,7 +95,7 @@ If the Control UI loads, your Gateway is ready for use.
     Requires a configured channel.
 
     ```bash
-    simpleclaw message send --target +15555550123 --message "Hello from SimpleClaw"
+    openclaw message send --target +15555550123 --message "Hello from OpenClaw"
     ```
 
   </Accordion>
@@ -89,11 +103,11 @@ If the Control UI loads, your Gateway is ready for use.
 
 ## Useful environment variables
 
-If you run SimpleClaw as a service account or want custom config/state locations:
+If you run OpenClaw as a service account or want custom config/state locations:
 
-- `SIMPLECLAW_HOME` sets the home directory used for internal path resolution.
-- `SIMPLECLAW_STATE_DIR` overrides the state directory.
-- `SIMPLECLAW_CONFIG_PATH` overrides the config file path.
+- `OPENCLAW_HOME` sets the home directory used for internal path resolution.
+- `OPENCLAW_STATE_DIR` overrides the state directory.
+- `OPENCLAW_CONFIG_PATH` overrides the config file path.
 
 Full environment variable reference: [Environment vars](/help/environment).
 
@@ -103,8 +117,8 @@ Full environment variable reference: [Environment vars](/help/environment).
   <Card title="Onboarding Wizard (details)" href="/start/wizard">
     Full CLI wizard reference and advanced options.
   </Card>
-  <Card title="Marketplace" href="/tools/marketplace">
-    Browse and install skills from the private catalog.
+  <Card title="macOS app onboarding" href="/start/onboarding">
+    First run flow for the macOS app.
   </Card>
 </Columns>
 

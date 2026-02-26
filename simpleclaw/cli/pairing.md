@@ -1,11 +1,11 @@
 ---
-summary: "CLI reference for `simpleclaw pairing` (approve/list pairing requests)"
+summary: "CLI reference for `openclaw pairing` (approve/list pairing requests)"
 read_when:
   - You’re using pairing-mode DMs and need to approve senders
 title: "pairing"
 ---
 
-# `simpleclaw pairing`
+# `openclaw pairing`
 
 Approve or inspect DM pairing requests (for channels that support pairing).
 
@@ -16,12 +16,12 @@ Related:
 ## Commands
 
 ```bash
-simpleclaw pairing list telegram
-simpleclaw pairing list --channel telegram --account work
-simpleclaw pairing list telegram --json
+openclaw pairing list telegram
+openclaw pairing list --channel telegram --account work
+openclaw pairing list telegram --json
 
-simpleclaw pairing approve telegram <code>
-simpleclaw pairing approve --channel telegram --account work <code> --notify
+openclaw pairing approve telegram <code>
+openclaw pairing approve --channel telegram --account work <code> --notify
 ```
 
 ## Notes

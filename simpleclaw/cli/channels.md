@@ -1,12 +1,12 @@
 ---
-summary: "CLI reference for `simpleclaw channels` (accounts, status, login/logout, logs)"
+summary: "CLI reference for `openclaw channels` (accounts, status, login/logout, logs)"
 read_when:
   - You want to add/remove channel accounts (WhatsApp/Telegram/Discord/Google Chat/Slack/Mattermost (plugin)/Signal/iMessage)
   - You want to check channel status or tail channel logs
 title: "channels"
 ---
 
-# `simpleclaw channels`
+# `openclaw channels`
 
 Manage chat channel accounts and their runtime status on the Gateway.
 
@@ -18,43 +18,43 @@ Related docs:
 ## Common commands
 
 ```bash
-simpleclaw channels list
-simpleclaw channels status
-simpleclaw channels capabilities
-simpleclaw channels capabilities --channel discord --target channel:123
-simpleclaw channels resolve --channel slack "#general" "@jane"
-simpleclaw channels logs --channel all
+openclaw channels list
+openclaw channels status
+openclaw channels capabilities
+openclaw channels capabilities --channel discord --target channel:123
+openclaw channels resolve --channel slack "#general" "@jane"
+openclaw channels logs --channel all
 ```
 
 ## Add / remove accounts
 
 ```bash
-simpleclaw channels add --channel telegram --token <bot-token>
-simpleclaw channels remove --channel telegram --delete
+openclaw channels add --channel telegram --token <bot-token>
+openclaw channels remove --channel telegram --delete
 ```
 
-Tip: `simpleclaw channels add --help` shows per-channel flags (token, app token, signal-cli paths, etc).
+Tip: `openclaw channels add --help` shows per-channel flags (token, app token, signal-cli paths, etc).
 
 ## Login / logout (interactive)
 
 ```bash
-simpleclaw channels login --channel whatsapp
-simpleclaw channels logout --channel whatsapp
+openclaw channels login --channel whatsapp
+openclaw channels logout --channel whatsapp
 ```
 
 ## Troubleshooting
 
-- Run `simpleclaw status --deep` for a broad probe.
-- Use `simpleclaw doctor` for guided fixes.
-- `simpleclaw channels list` prints `Claude: HTTP 403 ... user:profile` → usage snapshot needs the `user:profile` scope. Use `--no-usage`, or provide a claude.ai session key (`CLAUDE_WEB_SESSION_KEY` / `CLAUDE_WEB_COOKIE`), or re-auth via Claude Code CLI.
+- Run `openclaw status --deep` for a broad probe.
+- Use `openclaw doctor` for guided fixes.
+- `openclaw channels list` prints `Claude: HTTP 403 ... user:profile` → usage snapshot needs the `user:profile` scope. Use `--no-usage`, or provide a claude.ai session key (`CLAUDE_WEB_SESSION_KEY` / `CLAUDE_WEB_COOKIE`), or re-auth via Claude Code CLI.
 
 ## Capabilities probe
 
 Fetch provider capability hints (intents/scopes where available) plus static feature support:
 
 ```bash
-simpleclaw channels capabilities
-simpleclaw channels capabilities --channel discord --target channel:123
+openclaw channels capabilities
+openclaw channels capabilities --channel discord --target channel:123
 ```
 
 Notes:
@@ -68,9 +68,9 @@ Notes:
 Resolve channel/user names to IDs using the provider directory:
 
 ```bash
-simpleclaw channels resolve --channel slack "#general" "@jane"
-simpleclaw channels resolve --channel discord "My Server/#support" "@someone"
-simpleclaw channels resolve --channel matrix "Project Room"
+openclaw channels resolve --channel slack "#general" "@jane"
+openclaw channels resolve --channel discord "My Server/#support" "@someone"
+openclaw channels resolve --channel matrix "Project Room"
 ```
 
 Notes:

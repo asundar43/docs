@@ -1,5 +1,5 @@
 ---
-summary: "Install SimpleClaw — installer script, npm/pnpm, from source, Docker, and more"
+summary: "Install OpenClaw — installer script, npm/pnpm, from source, Docker, and more"
 read_when:
   - You need an install method other than the Getting Started quickstart
   - You want to deploy to a cloud platform
@@ -13,49 +13,95 @@ Already followed [Getting Started](/start/getting-started)? You're all set — t
 
 ## System requirements
 
-- **[Node 22+](/install/node)**
+- **[Node 22+](/install/node)** (the [installer script](#install-methods) will install it if missing)
 - macOS, Linux, or Windows
 - `pnpm` only if you build from source
-- Access to the SimpleClaw private registry (Google Artifact Registry)
 
 <Note>
-On Windows, we strongly recommend running SimpleClaw under [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install).
+On Windows, we strongly recommend running OpenClaw under [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install).
 </Note>
 
 ## Install methods
 
 <Tip>
-SimpleClaw is distributed via a **private npm registry** on Google Artifact Registry. You need GCP access to install.
+The **installer script** is the recommended way to install OpenClaw. It handles Node detection, installation, and onboarding in one step.
 </Tip>
 
+<Warning>
+For VPS/cloud hosts, avoid third-party "1-click" marketplace images when possible. Prefer a clean base OS image (for example Ubuntu LTS), then install OpenClaw yourself with the installer script.
+</Warning>
+
 <AccordionGroup>
-  <Accordion title="npm (recommended)" icon="package" defaultOpen>
-    ```bash
-    npm install -g simpleclaw --registry https://us-central1-npm.pkg.dev/jarvis-486806/simpleclaw-npm
-    simpleclaw onboard --install-daemon
-    ```
+  <Accordion title="Installer script" icon="rocket" defaultOpen>
+    Downloads the CLI, installs it globally via npm, and launches the onboarding wizard.
 
-    <Accordion title="sharp build errors?">
-      If you have libvips installed globally (common on macOS via Homebrew) and `sharp` fails, force prebuilt binaries:
+    <Tabs>
+      <Tab title="macOS / Linux / WSL2">
+        ```bash
+        curl -fsSL https://openclaw.ai/install.sh | bash
+        ```
+      </Tab>
+      <Tab title="Windows (PowerShell)">
+        ```powershell
+        iwr -useb https://openclaw.ai/install.ps1 | iex
+        ```
+      </Tab>
+    </Tabs>
 
-      ```bash
-      SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g simpleclaw --registry https://us-central1-npm.pkg.dev/jarvis-486806/simpleclaw-npm
-      ```
+    That's it — the script handles Node detection, installation, and onboarding.
 
-      If you see `sharp: Please add node-gyp to your dependencies`, either install build tooling (macOS: Xcode CLT + `npm install -g node-gyp`) or use the env var above.
-    </Accordion>
+    To skip onboarding and just install the binary:
+
+    <Tabs>
+      <Tab title="macOS / Linux / WSL2">
+        ```bash
+        curl -fsSL https://openclaw.ai/install.sh | bash -s -- --no-onboard
+        ```
+      </Tab>
+      <Tab title="Windows (PowerShell)">
+        ```powershell
+        & ([scriptblock]::Create((iwr -useb https://openclaw.ai/install.ps1))) -NoOnboard
+        ```
+      </Tab>
+    </Tabs>
+
+    For all flags, env vars, and CI/automation options, see [Installer internals](/install/installer).
+
   </Accordion>
 
-  <Accordion title="pnpm" icon="package">
-    ```bash
-    pnpm add -g simpleclaw --registry https://us-central1-npm.pkg.dev/jarvis-486806/simpleclaw-npm
-    pnpm approve-builds -g        # approve simpleclaw, node-llama-cpp, sharp, etc.
-    simpleclaw onboard --install-daemon
-    ```
+  <Accordion title="npm / pnpm" icon="package">
+    If you already have Node 22+ and prefer to manage the install yourself:
 
-    <Note>
-    pnpm requires explicit approval for packages with build scripts. After the first install shows the "Ignored build scripts" warning, run `pnpm approve-builds -g` and select the listed packages.
-    </Note>
+    <Tabs>
+      <Tab title="npm">
+        ```bash
+        npm install -g openclaw@latest
+        openclaw onboard --install-daemon
+        ```
+
+        <Accordion title="sharp build errors?">
+          If you have libvips installed globally (common on macOS via Homebrew) and `sharp` fails, force prebuilt binaries:
+
+          ```bash
+          SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g openclaw@latest
+          ```
+
+          If you see `sharp: Please add node-gyp to your dependencies`, either install build tooling (macOS: Xcode CLT + `npm install -g node-gyp`) or use the env var above.
+        </Accordion>
+      </Tab>
+      <Tab title="pnpm">
+        ```bash
+        pnpm add -g openclaw@latest
+        pnpm approve-builds -g        # approve openclaw, node-llama-cpp, sharp, etc.
+        openclaw onboard --install-daemon
+        ```
+
+        <Note>
+        pnpm requires explicit approval for packages with build scripts. After the first install shows the "Ignored build scripts" warning, run `pnpm approve-builds -g` and select the listed packages.
+        </Note>
+      </Tab>
+    </Tabs>
+
   </Accordion>
 
   <Accordion title="From source" icon="github">
@@ -63,28 +109,28 @@ SimpleClaw is distributed via a **private npm registry** on Google Artifact Regi
 
     <Steps>
       <Step title="Clone and build">
-        Clone the [SimpleClaw repo](https://github.com/simpleclaw/simpleclaw) and build:
+        Clone the [OpenClaw repo](https://github.com/simpleclaw/simpleclaw) and build:
 
         ```bash
         git clone https://github.com/simpleclaw/simpleclaw.git
-        cd simpleclaw
+        cd openclaw
         pnpm install
         pnpm ui:build
         pnpm build
         ```
       </Step>
       <Step title="Link the CLI">
-        Make the `simpleclaw` command available globally:
+        Make the `openclaw` command available globally:
 
         ```bash
         pnpm link --global
         ```
 
-        Alternatively, skip the link and run commands via `pnpm simpleclaw ...` from inside the repo.
+        Alternatively, skip the link and run commands via `pnpm openclaw ...` from inside the repo.
       </Step>
       <Step title="Run onboarding">
         ```bash
-        simpleclaw onboard --install-daemon
+        openclaw onboard --install-daemon
         ```
       </Step>
     </Steps>
@@ -119,20 +165,20 @@ SimpleClaw is distributed via a **private npm registry** on Google Artifact Regi
 Verify everything is working:
 
 ```bash
-simpleclaw doctor         # check for config issues
-simpleclaw status         # gateway status
-simpleclaw dashboard      # open the browser UI
+openclaw doctor         # check for config issues
+openclaw status         # gateway status
+openclaw dashboard      # open the browser UI
 ```
 
 If you need custom runtime paths, use:
 
-- `SIMPLECLAW_HOME` for home-directory based internal paths
-- `SIMPLECLAW_STATE_DIR` for mutable state location
-- `SIMPLECLAW_CONFIG_PATH` for config file location
+- `OPENCLAW_HOME` for home-directory based internal paths
+- `OPENCLAW_STATE_DIR` for mutable state location
+- `OPENCLAW_CONFIG_PATH` for config file location
 
 See [Environment vars](/help/environment) for precedence and full details.
 
-## Troubleshooting: `simpleclaw` not found
+## Troubleshooting: `openclaw` not found
 
 <Accordion title="PATH diagnosis and fix">
   Quick diagnosis:
@@ -144,7 +190,7 @@ npm prefix -g
 echo "$PATH"
 ```
 
-If `$(npm prefix -g)/bin` (macOS/Linux) or `$(npm prefix -g)` (Windows) is **not** in your `$PATH`, your shell can't find global npm binaries (including `simpleclaw`).
+If `$(npm prefix -g)/bin` (macOS/Linux) or `$(npm prefix -g)` (Windows) is **not** in your `$PATH`, your shell can't find global npm binaries (including `openclaw`).
 
 Fix — add it to your shell startup file (`~/.zshrc` or `~/.bashrc`):
 
@@ -161,12 +207,12 @@ Then open a new terminal (or `rehash` in zsh / `hash -r` in bash).
 
 <CardGroup cols={3}>
   <Card title="Updating" href="/install/updating" icon="refresh-cw">
-    Keep SimpleClaw up to date.
+    Keep OpenClaw up to date.
   </Card>
   <Card title="Migrating" href="/install/migrating" icon="arrow-right">
     Move to a new machine.
   </Card>
   <Card title="Uninstall" href="/install/uninstall" icon="trash-2">
-    Remove SimpleClaw completely.
+    Remove OpenClaw completely.
   </Card>
 </CardGroup>

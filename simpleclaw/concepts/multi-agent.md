@@ -15,12 +15,12 @@ An **agent** is a fully scoped brain with its own:
 
 - **Workspace** (files, AGENTS.md/SOUL.md/USER.md, local notes, persona rules).
 - **State directory** (`agentDir`) for auth profiles, model registry, and per-agent config.
-- **Session store** (chat history + routing state) under `~/.simpleclaw/agents/<agentId>/sessions`.
+- **Session store** (chat history + routing state) under `~/.openclaw/agents/<agentId>/sessions`.
 
 Auth profiles are **per-agent**. Each agent reads from its own:
 
 ```text
-~/.simpleclaw/agents/<agentId>/agent/auth-profiles.json
+~/.openclaw/agents/<agentId>/agent/auth-profiles.json
 ```
 
 Main agent credentials are **not** shared automatically. Never reuse `agentDir`
@@ -28,7 +28,7 @@ across agents (it causes auth/session collisions). If you want to share creds,
 copy `auth-profiles.json` into the other agent's `agentDir`.
 
 Skills are per-agent via each workspace’s `skills/` folder, with shared skills
-available from `~/.simpleclaw/skills`. See [Skills: per-agent vs shared](/tools/skills#per-agent-vs-shared-skills).
+available from `~/.openclaw/skills`. See [Skills: per-agent vs shared](/tools/skills#per-agent-vs-shared-skills).
 
 The Gateway can host **one agent** (default) or **many agents** side-by-side.
 
@@ -39,27 +39,27 @@ reach other host locations unless sandboxing is enabled. See
 
 ## Paths (quick map)
 
-- Config: `~/.simpleclaw/simpleclaw.json` (or `SIMPLECLAW_CONFIG_PATH`)
-- State dir: `~/.simpleclaw` (or `SIMPLECLAW_STATE_DIR`)
-- Workspace: `~/.simpleclaw/workspace` (or `~/.simpleclaw/workspace-<agentId>`)
-- Agent dir: `~/.simpleclaw/agents/<agentId>/agent` (or `agents.list[].agentDir`)
-- Sessions: `~/.simpleclaw/agents/<agentId>/sessions`
+- Config: `~/.openclaw/openclaw.json` (or `OPENCLAW_CONFIG_PATH`)
+- State dir: `~/.openclaw` (or `OPENCLAW_STATE_DIR`)
+- Workspace: `~/.openclaw/workspace` (or `~/.openclaw/workspace-<agentId>`)
+- Agent dir: `~/.openclaw/agents/<agentId>/agent` (or `agents.list[].agentDir`)
+- Sessions: `~/.openclaw/agents/<agentId>/sessions`
 
 ### Single-agent mode (default)
 
-If you do nothing, SimpleClaw runs a single agent:
+If you do nothing, OpenClaw runs a single agent:
 
 - `agentId` defaults to **`main`**.
 - Sessions are keyed as `agent:main:<mainKey>`.
-- Workspace defaults to `~/.simpleclaw/workspace` (or `~/.simpleclaw/workspace-<profile>` when `SIMPLECLAW_PROFILE` is set).
-- State defaults to `~/.simpleclaw/agents/main/agent`.
+- Workspace defaults to `~/.openclaw/workspace` (or `~/.openclaw/workspace-<profile>` when `OPENCLAW_PROFILE` is set).
+- State defaults to `~/.openclaw/agents/main/agent`.
 
 ## Agent helper
 
 Use the agent wizard to add a new isolated agent:
 
 ```bash
-simpleclaw agents add work
+openclaw agents add work
 ```
 
 Then add `bindings` (or let the wizard do it) to route inbound messages.
@@ -67,7 +67,7 @@ Then add `bindings` (or let the wizard do it) to route inbound messages.
 Verify with:
 
 ```bash
-simpleclaw agents list --bindings
+openclaw agents list --bindings
 ```
 
 ## Quick start
@@ -78,11 +78,11 @@ simpleclaw agents list --bindings
 Use the wizard or create workspaces manually:
 
 ```bash
-simpleclaw agents add coding
-simpleclaw agents add social
+openclaw agents add coding
+openclaw agents add social
 ```
 
-Each agent gets its own workspace with `SOUL.md`, `AGENTS.md`, and optional `USER.md`, plus a dedicated `agentDir` and session store under `~/.simpleclaw/agents/<agentId>`.
+Each agent gets its own workspace with `SOUL.md`, `AGENTS.md`, and optional `USER.md`, plus a dedicated `agentDir` and session store under `~/.openclaw/agents/<agentId>`.
 
   </Step>
 
@@ -95,7 +95,7 @@ Create one account per agent on your preferred channels:
 - WhatsApp: link each phone number per account.
 
 ```bash
-simpleclaw channels login --channel whatsapp --account work
+openclaw channels login --channel whatsapp --account work
 ```
 
 See channel guides: [Discord](/channels/discord), [Telegram](/channels/telegram), [WhatsApp](/channels/whatsapp).
@@ -111,9 +111,9 @@ Add agents under `agents.list`, channel accounts under `channels.<channel>.accou
   <Step title="Restart and verify">
 
 ```bash
-simpleclaw gateway restart
-simpleclaw agents list --bindings
-simpleclaw channels status --probe
+openclaw gateway restart
+openclaw agents list --bindings
+openclaw channels status --probe
 ```
 
   </Step>
@@ -141,8 +141,8 @@ Example:
 {
   agents: {
     list: [
-      { id: "alex", workspace: "~/.simpleclaw/workspace-alex" },
-      { id: "mia", workspace: "~/.simpleclaw/workspace-mia" },
+      { id: "alex", workspace: "~/.openclaw/workspace-alex" },
+      { id: "mia", workspace: "~/.openclaw/workspace-mia" },
     ],
   },
   bindings: [
@@ -208,8 +208,8 @@ Each Discord bot account maps to a unique `accountId`. Bind each account to an a
 {
   agents: {
     list: [
-      { id: "main", workspace: "~/.simpleclaw/workspace-main" },
-      { id: "coding", workspace: "~/.simpleclaw/workspace-coding" },
+      { id: "main", workspace: "~/.openclaw/workspace-main" },
+      { id: "coding", workspace: "~/.openclaw/workspace-coding" },
     ],
   },
   bindings: [
@@ -257,8 +257,8 @@ Notes:
 {
   agents: {
     list: [
-      { id: "main", workspace: "~/.simpleclaw/workspace-main" },
-      { id: "alerts", workspace: "~/.simpleclaw/workspace-alerts" },
+      { id: "main", workspace: "~/.openclaw/workspace-main" },
+      { id: "alerts", workspace: "~/.openclaw/workspace-alerts" },
     ],
   },
   bindings: [
@@ -293,11 +293,11 @@ Notes:
 Link each account before starting the gateway:
 
 ```bash
-simpleclaw channels login --channel whatsapp --account personal
-simpleclaw channels login --channel whatsapp --account biz
+openclaw channels login --channel whatsapp --account personal
+openclaw channels login --channel whatsapp --account biz
 ```
 
-`~/.simpleclaw/simpleclaw.json` (JSON5):
+`~/.openclaw/openclaw.json` (JSON5):
 
 ```js
 {
@@ -307,14 +307,14 @@ simpleclaw channels login --channel whatsapp --account biz
         id: "home",
         default: true,
         name: "Home",
-        workspace: "~/.simpleclaw/workspace-home",
-        agentDir: "~/.simpleclaw/agents/home/agent",
+        workspace: "~/.openclaw/workspace-home",
+        agentDir: "~/.openclaw/agents/home/agent",
       },
       {
         id: "work",
         name: "Work",
-        workspace: "~/.simpleclaw/workspace-work",
-        agentDir: "~/.simpleclaw/agents/work/agent",
+        workspace: "~/.openclaw/workspace-work",
+        agentDir: "~/.openclaw/agents/work/agent",
       },
     ],
   },
@@ -347,12 +347,12 @@ simpleclaw channels login --channel whatsapp --account biz
     whatsapp: {
       accounts: {
         personal: {
-          // Optional override. Default: ~/.simpleclaw/credentials/whatsapp/personal
-          // authDir: "~/.simpleclaw/credentials/whatsapp/personal",
+          // Optional override. Default: ~/.openclaw/credentials/whatsapp/personal
+          // authDir: "~/.openclaw/credentials/whatsapp/personal",
         },
         biz: {
-          // Optional override. Default: ~/.simpleclaw/credentials/whatsapp/biz
-          // authDir: "~/.simpleclaw/credentials/whatsapp/biz",
+          // Optional override. Default: ~/.openclaw/credentials/whatsapp/biz
+          // authDir: "~/.openclaw/credentials/whatsapp/biz",
         },
       },
     },
@@ -371,13 +371,13 @@ Split by channel: route WhatsApp to a fast everyday agent and Telegram to an Opu
       {
         id: "chat",
         name: "Everyday",
-        workspace: "~/.simpleclaw/workspace-chat",
+        workspace: "~/.openclaw/workspace-chat",
         model: "anthropic/claude-sonnet-4-5",
       },
       {
         id: "opus",
         name: "Deep Work",
-        workspace: "~/.simpleclaw/workspace-opus",
+        workspace: "~/.openclaw/workspace-opus",
         model: "anthropic/claude-opus-4-6",
       },
     ],
@@ -405,13 +405,13 @@ Keep WhatsApp on the fast agent, but route one DM to Opus:
       {
         id: "chat",
         name: "Everyday",
-        workspace: "~/.simpleclaw/workspace-chat",
+        workspace: "~/.openclaw/workspace-chat",
         model: "anthropic/claude-sonnet-4-5",
       },
       {
         id: "opus",
         name: "Deep Work",
-        workspace: "~/.simpleclaw/workspace-opus",
+        workspace: "~/.openclaw/workspace-opus",
         model: "anthropic/claude-opus-4-6",
       },
     ],
@@ -440,7 +440,7 @@ and a tighter tool policy:
       {
         id: "family",
         name: "Family",
-        workspace: "~/.simpleclaw/workspace-family",
+        workspace: "~/.openclaw/workspace-family",
         identity: { name: "Family Bot" },
         groupChat: {
           mentionPatterns: ["@family", "@familybot", "@Family Bot"],
@@ -493,7 +493,7 @@ Starting with v2026.1.6, each agent can have its own sandbox and tool restrictio
     list: [
       {
         id: "personal",
-        workspace: "~/.simpleclaw/workspace-personal",
+        workspace: "~/.openclaw/workspace-personal",
         sandbox: {
           mode: "off",  // No sandbox for personal agent
         },
@@ -501,7 +501,7 @@ Starting with v2026.1.6, each agent can have its own sandbox and tool restrictio
       },
       {
         id: "family",
-        workspace: "~/.simpleclaw/workspace-family",
+        workspace: "~/.openclaw/workspace-family",
         sandbox: {
           mode: "all",     // Always sandboxed
           scope: "agent",  // One container per agent
