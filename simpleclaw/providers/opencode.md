@@ -1,5 +1,5 @@
 ---
-summary: "Use OpenCode Zen (curated models) with OpenClaw"
+summary: "Use OpenCode Zen (curated models) with SimpleClaw"
 read_when:
   - You want OpenCode Zen for model access
   - You want a curated list of coding-friendly models
@@ -15,9 +15,9 @@ Zen is currently in beta.
 ## CLI setup
 
 ```bash
-openclaw onboard --auth-choice opencode-zen
+simpleclaw onboard --auth-choice opencode-zen
 # or non-interactive
-openclaw onboard --opencode-zen-api-key "$OPENCODE_API_KEY"
+simpleclaw onboard --opencode-zen-api-key "$OPENCODE_API_KEY"
 ```
 
 ## Config snippet

@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "OpenClaw",
-  "description": "Self-hosted gateway that connects WhatsApp, Telegram, Discord, iMessage, and more to AI coding agents. Run a single Gateway process on your own machine and message your AI assistant from anywhere.",
+  "name": "SimpleClaw",
+  "description": "Private AI gateway with WebSocket and chat completions support, a curated skill marketplace, and multi-channel messaging.",
   "theme": "mint",
   "icons": {
     "library": "lucide"
@@ -265,15 +265,15 @@
     },
     {
       "source": "/clawd",
-      "destination": "/simpleclaw/start/openclaw"
+      "destination": "/simpleclaw/start/simpleclaw"
     },
     {
       "source": "/start/clawd",
-      "destination": "/simpleclaw/start/openclaw"
+      "destination": "/simpleclaw/start/simpleclaw"
     },
     {
       "source": "/start/clawd/",
-      "destination": "/simpleclaw/start/openclaw"
+      "destination": "/simpleclaw/start/simpleclaw"
     },
     {
       "source": "/start/pairing",
@@ -412,86 +412,6 @@
       "destination": "/simpleclaw/nodes/location-command"
     },
     {
-      "source": "/lore",
-      "destination": "/simpleclaw/start/lore"
-    },
-    {
-      "source": "/mac/bun",
-      "destination": "/simpleclaw/platforms/mac/bundled-gateway"
-    },
-    {
-      "source": "/platforms/mac/bun",
-      "destination": "/simpleclaw/platforms/mac/bundled-gateway"
-    },
-    {
-      "source": "/mac/canvas",
-      "destination": "/simpleclaw/platforms/mac/canvas"
-    },
-    {
-      "source": "/mac/child-process",
-      "destination": "/simpleclaw/platforms/mac/child-process"
-    },
-    {
-      "source": "/mac/dev-setup",
-      "destination": "/simpleclaw/platforms/mac/dev-setup"
-    },
-    {
-      "source": "/mac/health",
-      "destination": "/simpleclaw/platforms/mac/health"
-    },
-    {
-      "source": "/mac/icon",
-      "destination": "/simpleclaw/platforms/mac/icon"
-    },
-    {
-      "source": "/mac/logging",
-      "destination": "/simpleclaw/platforms/mac/logging"
-    },
-    {
-      "source": "/mac/menu-bar",
-      "destination": "/simpleclaw/platforms/mac/menu-bar"
-    },
-    {
-      "source": "/mac/peekaboo",
-      "destination": "/simpleclaw/platforms/mac/peekaboo"
-    },
-    {
-      "source": "/mac/permissions",
-      "destination": "/simpleclaw/platforms/mac/permissions"
-    },
-    {
-      "source": "/mac/release",
-      "destination": "/simpleclaw/platforms/mac/release"
-    },
-    {
-      "source": "/mac/remote",
-      "destination": "/simpleclaw/platforms/mac/remote"
-    },
-    {
-      "source": "/mac/signing",
-      "destination": "/simpleclaw/platforms/mac/signing"
-    },
-    {
-      "source": "/mac/skills",
-      "destination": "/simpleclaw/platforms/mac/skills"
-    },
-    {
-      "source": "/mac/voice-overlay",
-      "destination": "/simpleclaw/platforms/mac/voice-overlay"
-    },
-    {
-      "source": "/mac/voicewake",
-      "destination": "/simpleclaw/platforms/mac/voicewake"
-    },
-    {
-      "source": "/mac/webchat",
-      "destination": "/simpleclaw/platforms/mac/webchat"
-    },
-    {
-      "source": "/mac/xpc",
-      "destination": "/simpleclaw/platforms/mac/xpc"
-    },
-    {
       "source": "/macos",
       "destination": "/simpleclaw/platforms/macos"
     },
@@ -598,10 +518,6 @@
     {
       "source": "/setup",
       "destination": "/simpleclaw/start/setup"
-    },
-    {
-      "source": "/showcase",
-      "destination": "/simpleclaw/start/showcase"
     },
     {
       "source": "/signal",
@@ -819,12 +735,6 @@
                 ]
               },
               {
-                "group": "Overview",
-                "pages": [
-                  "simpleclaw/start/showcase"
-                ]
-              },
-              {
                 "group": "Core concepts",
                 "pages": [
                   "simpleclaw/concepts/features"
@@ -842,7 +752,7 @@
               {
                 "group": "Guides",
                 "pages": [
-                  "simpleclaw/start/openclaw"
+                  "simpleclaw/start/simpleclaw"
                 ]
               }
             ]
@@ -853,8 +763,7 @@
               {
                 "group": "Install overview",
                 "pages": [
-                  "simpleclaw/install/index",
-                  "simpleclaw/install/installer"
+                  "simpleclaw/install/index"
                 ]
               },
               {
@@ -1138,29 +1047,6 @@
                   "simpleclaw/platforms/android",
                   "simpleclaw/platforms/ios"
                 ]
-              },
-              {
-                "group": "macOS companion app",
-                "pages": [
-                  "simpleclaw/platforms/mac/dev-setup",
-                  "simpleclaw/platforms/mac/menu-bar",
-                  "simpleclaw/platforms/mac/voicewake",
-                  "simpleclaw/platforms/mac/voice-overlay",
-                  "simpleclaw/platforms/mac/webchat",
-                  "simpleclaw/platforms/mac/canvas",
-                  "simpleclaw/platforms/mac/child-process",
-                  "simpleclaw/platforms/mac/health",
-                  "simpleclaw/platforms/mac/icon",
-                  "simpleclaw/platforms/mac/logging",
-                  "simpleclaw/platforms/mac/permissions",
-                  "simpleclaw/platforms/mac/remote",
-                  "simpleclaw/platforms/mac/signing",
-                  "simpleclaw/platforms/mac/release",
-                  "simpleclaw/platforms/mac/bundled-gateway",
-                  "simpleclaw/platforms/mac/xpc",
-                  "simpleclaw/platforms/mac/skills",
-                  "simpleclaw/platforms/mac/peekaboo"
-                ]
               }
             ]
           },
@@ -1373,12 +1259,6 @@
                 ]
               },
               {
-                "group": "Community",
-                "pages": [
-                  "simpleclaw/start/lore"
-                ]
-              },
-              {
                 "group": "Environment and debugging",
                 "pages": [
                   "simpleclaw/help/environment",
@@ -1416,615 +1296,6 @@
                 "pages": [
                   "simpleclaw/start/hubs",
                   "simpleclaw/start/docs-directory"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "language": "zh-Hans",
-        "tabs": [
-          {
-            "tab": "快速开始",
-            "groups": [
-              {
-                "group": "首页",
-                "pages": [
-                  "simpleclaw/zh-CN/index"
-                ]
-              },
-              {
-                "group": "概览",
-                "pages": [
-                  "simpleclaw/zh-CN/start/showcase"
-                ]
-              },
-              {
-                "group": "核心概念",
-                "pages": [
-                  "simpleclaw/zh-CN/concepts/features"
-                ]
-              },
-              {
-                "group": "第一步",
-                "pages": [
-                  "simpleclaw/zh-CN/start/getting-started",
-                  "simpleclaw/zh-CN/start/wizard",
-                  "simpleclaw/zh-CN/start/onboarding"
-                ]
-              },
-              {
-                "group": "指南",
-                "pages": [
-                  "simpleclaw/zh-CN/start/openclaw"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "安装",
-            "groups": [
-              {
-                "group": "安装概览",
-                "pages": [
-                  "simpleclaw/zh-CN/install/index",
-                  "simpleclaw/zh-CN/install/installer"
-                ]
-              },
-              {
-                "group": "安装方式",
-                "pages": [
-                  "simpleclaw/zh-CN/install/docker",
-                  "simpleclaw/zh-CN/install/nix",
-                  "simpleclaw/zh-CN/install/ansible",
-                  "simpleclaw/zh-CN/install/bun"
-                ]
-              },
-              {
-                "group": "维护",
-                "pages": [
-                  "simpleclaw/zh-CN/install/updating",
-                  "simpleclaw/zh-CN/install/migrating",
-                  "simpleclaw/zh-CN/install/uninstall"
-                ]
-              },
-              {
-                "group": "托管与部署",
-                "pages": [
-                  "simpleclaw/zh-CN/install/fly",
-                  "simpleclaw/zh-CN/install/hetzner",
-                  "simpleclaw/zh-CN/install/gcp",
-                  "simpleclaw/zh-CN/install/macos-vm",
-                  "simpleclaw/zh-CN/install/exe-dev",
-                  "simpleclaw/zh-CN/install/railway",
-                  "simpleclaw/zh-CN/install/render",
-                  "simpleclaw/zh-CN/install/northflank"
-                ]
-              },
-              {
-                "group": "高级",
-                "pages": [
-                  "simpleclaw/zh-CN/install/development-channels"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "消息渠道",
-            "groups": [
-              {
-                "group": "概览",
-                "pages": [
-                  "simpleclaw/zh-CN/channels/index"
-                ]
-              },
-              {
-                "group": "消息平台",
-                "pages": [
-                  "simpleclaw/zh-CN/channels/whatsapp",
-                  "simpleclaw/zh-CN/channels/telegram",
-                  "simpleclaw/zh-CN/channels/discord",
-                  "simpleclaw/zh-CN/channels/slack",
-                  "simpleclaw/zh-CN/channels/feishu",
-                  "simpleclaw/zh-CN/channels/googlechat",
-                  "simpleclaw/zh-CN/channels/mattermost",
-                  "simpleclaw/zh-CN/channels/signal",
-                  "simpleclaw/zh-CN/channels/imessage",
-                  "simpleclaw/zh-CN/channels/msteams",
-                  "simpleclaw/zh-CN/channels/line",
-                  "simpleclaw/zh-CN/channels/matrix",
-                  "simpleclaw/zh-CN/channels/zalo",
-                  "simpleclaw/zh-CN/channels/zalouser"
-                ]
-              },
-              {
-                "group": "配置",
-                "pages": [
-                  "simpleclaw/zh-CN/channels/pairing",
-                  "simpleclaw/zh-CN/channels/group-messages",
-                  "simpleclaw/zh-CN/channels/groups",
-                  "simpleclaw/zh-CN/channels/broadcast-groups",
-                  "simpleclaw/zh-CN/channels/channel-routing",
-                  "simpleclaw/zh-CN/channels/location",
-                  "simpleclaw/zh-CN/channels/troubleshooting"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "代理",
-            "groups": [
-              {
-                "group": "基础",
-                "pages": [
-                  "simpleclaw/zh-CN/concepts/architecture",
-                  "simpleclaw/zh-CN/concepts/agent",
-                  "simpleclaw/zh-CN/concepts/agent-loop",
-                  "simpleclaw/zh-CN/concepts/system-prompt",
-                  "simpleclaw/zh-CN/concepts/context",
-                  "simpleclaw/zh-CN/concepts/agent-workspace",
-                  "simpleclaw/zh-CN/concepts/oauth"
-                ]
-              },
-              {
-                "group": "引导",
-                "pages": [
-                  "simpleclaw/zh-CN/start/bootstrapping"
-                ]
-              },
-              {
-                "group": "会话与记忆",
-                "pages": [
-                  "simpleclaw/zh-CN/concepts/session",
-                  "simpleclaw/zh-CN/concepts/sessions",
-                  "simpleclaw/zh-CN/concepts/session-pruning",
-                  "simpleclaw/zh-CN/concepts/session-tool",
-                  "simpleclaw/zh-CN/concepts/memory",
-                  "simpleclaw/zh-CN/concepts/compaction"
-                ]
-              },
-              {
-                "group": "多代理",
-                "pages": [
-                  "simpleclaw/zh-CN/concepts/multi-agent",
-                  "simpleclaw/zh-CN/concepts/presence"
-                ]
-              },
-              {
-                "group": "消息与投递",
-                "pages": [
-                  "simpleclaw/zh-CN/concepts/messages",
-                  "simpleclaw/zh-CN/concepts/streaming",
-                  "simpleclaw/zh-CN/concepts/retry",
-                  "simpleclaw/zh-CN/concepts/queue"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "工具",
-            "groups": [
-              {
-                "group": "概览",
-                "pages": [
-                  "simpleclaw/zh-CN/tools/index"
-                ]
-              },
-              {
-                "group": "内置工具",
-                "pages": [
-                  "simpleclaw/zh-CN/tools/lobster",
-                  "simpleclaw/zh-CN/tools/llm-task",
-                  "simpleclaw/zh-CN/tools/exec",
-                  "simpleclaw/zh-CN/tools/web",
-                  "simpleclaw/zh-CN/tools/apply-patch",
-                  "simpleclaw/zh-CN/tools/elevated",
-                  "simpleclaw/zh-CN/tools/thinking",
-                  "simpleclaw/zh-CN/tools/reactions"
-                ]
-              },
-              {
-                "group": "浏览器",
-                "pages": [
-                  "simpleclaw/zh-CN/tools/browser",
-                  "simpleclaw/zh-CN/tools/browser-login",
-                  "simpleclaw/zh-CN/tools/chrome-extension",
-                  "simpleclaw/zh-CN/tools/browser-linux-troubleshooting"
-                ]
-              },
-              {
-                "group": "代理协作",
-                "pages": [
-                  "simpleclaw/zh-CN/tools/agent-send",
-                  "simpleclaw/zh-CN/tools/subagents",
-                  "simpleclaw/zh-CN/tools/multi-agent-sandbox-tools"
-                ]
-              },
-              {
-                "group": "技能",
-                "pages": [
-                  "simpleclaw/zh-CN/tools/slash-commands",
-                  "simpleclaw/zh-CN/tools/skills",
-                  "simpleclaw/zh-CN/tools/skills-config",
-                  "simpleclaw/zh-CN/tools/clawhub",
-                  "simpleclaw/zh-CN/tools/plugin"
-                ]
-              },
-              {
-                "group": "扩展",
-                "pages": [
-                  "simpleclaw/zh-CN/plugins/voice-call",
-                  "simpleclaw/zh-CN/plugins/zalouser"
-                ]
-              },
-              {
-                "group": "自动化",
-                "pages": [
-                  "simpleclaw/zh-CN/automation/hooks",
-                  "simpleclaw/zh-CN/automation/cron-jobs",
-                  "simpleclaw/zh-CN/automation/cron-vs-heartbeat",
-                  "simpleclaw/zh-CN/automation/troubleshooting",
-                  "simpleclaw/zh-CN/automation/webhook",
-                  "simpleclaw/zh-CN/automation/gmail-pubsub",
-                  "simpleclaw/zh-CN/automation/poll",
-                  "simpleclaw/zh-CN/automation/auth-monitoring"
-                ]
-              },
-              {
-                "group": "媒体与设备",
-                "pages": [
-                  "simpleclaw/zh-CN/nodes/index",
-                  "simpleclaw/zh-CN/nodes/troubleshooting",
-                  "simpleclaw/zh-CN/nodes/images",
-                  "simpleclaw/zh-CN/nodes/audio",
-                  "simpleclaw/zh-CN/nodes/camera",
-                  "simpleclaw/zh-CN/nodes/talk",
-                  "simpleclaw/zh-CN/nodes/voicewake",
-                  "simpleclaw/zh-CN/nodes/location-command"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "模型",
-            "groups": [
-              {
-                "group": "概览",
-                "pages": [
-                  "simpleclaw/zh-CN/providers/index",
-                  "simpleclaw/zh-CN/providers/models"
-                ]
-              },
-              {
-                "group": "模型概念",
-                "pages": [
-                  "simpleclaw/zh-CN/concepts/models"
-                ]
-              },
-              {
-                "group": "配置",
-                "pages": [
-                  "simpleclaw/zh-CN/concepts/model-providers",
-                  "simpleclaw/zh-CN/concepts/model-failover"
-                ]
-              },
-              {
-                "group": "提供商",
-                "pages": [
-                  "simpleclaw/zh-CN/providers/anthropic",
-                  "simpleclaw/zh-CN/providers/openai",
-                  "simpleclaw/zh-CN/providers/openrouter",
-                  "simpleclaw/zh-CN/providers/bedrock",
-                  "simpleclaw/zh-CN/providers/vercel-ai-gateway",
-                  "simpleclaw/zh-CN/providers/moonshot",
-                  "simpleclaw/zh-CN/providers/minimax",
-                  "simpleclaw/zh-CN/providers/opencode",
-                  "simpleclaw/zh-CN/providers/glm",
-                  "simpleclaw/zh-CN/providers/zai",
-                  "simpleclaw/zh-CN/providers/synthetic",
-                  "simpleclaw/zh-CN/providers/qianfan"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "平台",
-            "groups": [
-              {
-                "group": "平台概览",
-                "pages": [
-                  "simpleclaw/zh-CN/platforms/index",
-                  "simpleclaw/zh-CN/platforms/macos",
-                  "simpleclaw/zh-CN/platforms/linux",
-                  "simpleclaw/zh-CN/platforms/windows",
-                  "simpleclaw/zh-CN/platforms/android",
-                  "simpleclaw/zh-CN/platforms/ios"
-                ]
-              },
-              {
-                "group": "macOS 配套应用",
-                "pages": [
-                  "simpleclaw/zh-CN/platforms/mac/dev-setup",
-                  "simpleclaw/zh-CN/platforms/mac/menu-bar",
-                  "simpleclaw/zh-CN/platforms/mac/voicewake",
-                  "simpleclaw/zh-CN/platforms/mac/voice-overlay",
-                  "simpleclaw/zh-CN/platforms/mac/webchat",
-                  "simpleclaw/zh-CN/platforms/mac/canvas",
-                  "simpleclaw/zh-CN/platforms/mac/child-process",
-                  "simpleclaw/zh-CN/platforms/mac/health",
-                  "simpleclaw/zh-CN/platforms/mac/icon",
-                  "simpleclaw/zh-CN/platforms/mac/logging",
-                  "simpleclaw/zh-CN/platforms/mac/permissions",
-                  "simpleclaw/zh-CN/platforms/mac/remote",
-                  "simpleclaw/zh-CN/platforms/mac/signing",
-                  "simpleclaw/zh-CN/platforms/mac/release",
-                  "simpleclaw/zh-CN/platforms/mac/bundled-gateway",
-                  "simpleclaw/zh-CN/platforms/mac/xpc",
-                  "simpleclaw/zh-CN/platforms/mac/skills",
-                  "simpleclaw/zh-CN/platforms/mac/peekaboo"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "网关与运维",
-            "groups": [
-              {
-                "group": "网关",
-                "pages": [
-                  "simpleclaw/zh-CN/gateway/index",
-                  {
-                    "group": "配置与运维",
-                    "pages": [
-                      "simpleclaw/zh-CN/gateway/configuration",
-                      "simpleclaw/zh-CN/gateway/configuration-examples",
-                      "simpleclaw/zh-CN/gateway/authentication",
-                      "simpleclaw/zh-CN/gateway/health",
-                      "simpleclaw/zh-CN/gateway/heartbeat",
-                      "simpleclaw/zh-CN/gateway/doctor",
-                      "simpleclaw/zh-CN/gateway/logging",
-                      "simpleclaw/zh-CN/gateway/gateway-lock",
-                      "simpleclaw/zh-CN/gateway/background-process",
-                      "simpleclaw/zh-CN/gateway/multiple-gateways",
-                      "simpleclaw/zh-CN/gateway/troubleshooting"
-                    ]
-                  },
-                  {
-                    "group": "安全与沙箱",
-                    "pages": [
-                      "simpleclaw/zh-CN/gateway/security/index",
-                      "simpleclaw/zh-CN/gateway/sandboxing",
-                      "simpleclaw/zh-CN/gateway/sandbox-vs-tool-policy-vs-elevated"
-                    ]
-                  },
-                  {
-                    "group": "协议与 API",
-                    "pages": [
-                      "simpleclaw/zh-CN/gateway/protocol",
-                      "simpleclaw/zh-CN/gateway/bridge-protocol",
-                      "simpleclaw/zh-CN/gateway/openai-http-api",
-                      "simpleclaw/zh-CN/gateway/tools-invoke-http-api",
-                      "simpleclaw/zh-CN/gateway/cli-backends",
-                      "simpleclaw/zh-CN/gateway/local-models"
-                    ]
-                  },
-                  {
-                    "group": "网络与发现",
-                    "pages": [
-                      "simpleclaw/zh-CN/gateway/network-model",
-                      "simpleclaw/zh-CN/gateway/pairing",
-                      "simpleclaw/zh-CN/gateway/discovery",
-                      "simpleclaw/zh-CN/gateway/bonjour"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "远程访问",
-                "pages": [
-                  "simpleclaw/zh-CN/gateway/remote",
-                  "simpleclaw/zh-CN/gateway/remote-gateway-readme",
-                  "simpleclaw/zh-CN/gateway/tailscale"
-                ]
-              },
-              {
-                "group": "安全",
-                "pages": [
-                  "simpleclaw/zh-CN/security/formal-verification"
-                ]
-              },
-              {
-                "group": "Web 界面",
-                "pages": [
-                  "simpleclaw/zh-CN/web/index",
-                  "simpleclaw/zh-CN/web/control-ui",
-                  "simpleclaw/zh-CN/web/dashboard",
-                  "simpleclaw/zh-CN/web/webchat",
-                  "simpleclaw/zh-CN/web/tui"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "参考",
-            "groups": [
-              {
-                "group": "CLI 命令",
-                "pages": [
-                  "simpleclaw/zh-CN/cli/index",
-                  "simpleclaw/zh-CN/cli/agent",
-                  "simpleclaw/zh-CN/cli/agents",
-                  "simpleclaw/zh-CN/cli/approvals",
-                  "simpleclaw/zh-CN/cli/browser",
-                  "simpleclaw/zh-CN/cli/channels",
-                  "simpleclaw/zh-CN/cli/configure",
-                  "simpleclaw/zh-CN/cli/cron",
-                  "simpleclaw/zh-CN/cli/dashboard",
-                  "simpleclaw/zh-CN/cli/directory",
-                  "simpleclaw/zh-CN/cli/dns",
-                  "simpleclaw/zh-CN/cli/docs",
-                  "simpleclaw/zh-CN/cli/doctor",
-                  "simpleclaw/zh-CN/cli/gateway",
-                  "simpleclaw/zh-CN/cli/health",
-                  "simpleclaw/zh-CN/cli/hooks",
-                  "simpleclaw/zh-CN/cli/logs",
-                  "simpleclaw/zh-CN/cli/memory",
-                  "simpleclaw/zh-CN/cli/message",
-                  "simpleclaw/zh-CN/cli/models",
-                  "simpleclaw/zh-CN/cli/nodes",
-                  "simpleclaw/zh-CN/cli/onboard",
-                  "simpleclaw/zh-CN/cli/pairing",
-                  "simpleclaw/zh-CN/cli/plugins",
-                  "simpleclaw/zh-CN/cli/reset",
-                  "simpleclaw/zh-CN/cli/sandbox",
-                  "simpleclaw/zh-CN/cli/security",
-                  "simpleclaw/zh-CN/cli/sessions",
-                  "simpleclaw/zh-CN/cli/setup",
-                  "simpleclaw/zh-CN/cli/skills",
-                  "simpleclaw/zh-CN/cli/status",
-                  "simpleclaw/zh-CN/cli/system",
-                  "simpleclaw/zh-CN/cli/tui",
-                  "simpleclaw/zh-CN/cli/uninstall",
-                  "simpleclaw/zh-CN/cli/update",
-                  "simpleclaw/zh-CN/cli/voicecall"
-                ]
-              },
-              {
-                "group": "RPC 与 API",
-                "pages": [
-                  "simpleclaw/zh-CN/reference/rpc",
-                  "simpleclaw/zh-CN/reference/device-models"
-                ]
-              },
-              {
-                "group": "模板",
-                "pages": [
-                  "simpleclaw/zh-CN/reference/AGENTS.default",
-                  "simpleclaw/zh-CN/reference/templates/AGENTS",
-                  "simpleclaw/zh-CN/reference/templates/BOOT",
-                  "simpleclaw/zh-CN/reference/templates/BOOTSTRAP",
-                  "simpleclaw/zh-CN/reference/templates/HEARTBEAT",
-                  "simpleclaw/zh-CN/reference/templates/IDENTITY",
-                  "simpleclaw/zh-CN/reference/templates/SOUL",
-                  "simpleclaw/zh-CN/reference/templates/TOOLS",
-                  "simpleclaw/zh-CN/reference/templates/USER"
-                ]
-              },
-              {
-                "group": "技术参考",
-                "pages": [
-                  "simpleclaw/zh-CN/reference/wizard",
-                  "simpleclaw/zh-CN/reference/token-use"
-                ]
-              },
-              {
-                "group": "概念内部机制",
-                "pages": [
-                  "simpleclaw/zh-CN/concepts/typebox",
-                  "simpleclaw/zh-CN/concepts/markdown-formatting",
-                  "simpleclaw/zh-CN/concepts/typing-indicators",
-                  "simpleclaw/zh-CN/concepts/usage-tracking",
-                  "simpleclaw/zh-CN/concepts/timezone"
-                ]
-              },
-              {
-                "group": "项目",
-                "pages": [
-                  "simpleclaw/zh-CN/reference/credits"
-                ]
-              },
-              {
-                "group": "发布说明",
-                "pages": [
-                  "simpleclaw/zh-CN/reference/RELEASING",
-                  "simpleclaw/zh-CN/reference/test"
-                ]
-              },
-              {
-                "group": "实验性功能",
-                "pages": [
-                  "simpleclaw/zh-CN/experiments/onboarding-config-protocol",
-                  "simpleclaw/zh-CN/experiments/plans/cron-add-hardening",
-                  "simpleclaw/zh-CN/experiments/plans/group-policy-hardening",
-                  "simpleclaw/zh-CN/experiments/research/memory",
-                  "simpleclaw/zh-CN/experiments/proposals/model-config"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "帮助",
-            "groups": [
-              {
-                "group": "帮助",
-                "pages": [
-                  "simpleclaw/zh-CN/help/index",
-                  "simpleclaw/zh-CN/help/troubleshooting",
-                  "simpleclaw/zh-CN/help/faq"
-                ]
-              },
-              {
-                "group": "社区",
-                "pages": [
-                  "simpleclaw/zh-CN/start/lore"
-                ]
-              },
-              {
-                "group": "环境与调试",
-                "pages": [
-                  "simpleclaw/zh-CN/help/environment",
-                  "simpleclaw/zh-CN/help/debugging",
-                  "simpleclaw/zh-CN/help/testing",
-                  "simpleclaw/zh-CN/help/scripts"
-                ]
-              },
-              {
-                "group": "Node 运行时",
-                "pages": [
-                  "simpleclaw/zh-CN/install/node"
-                ]
-              },
-              {
-                "group": "压缩机制内部参考",
-                "pages": [
-                  "simpleclaw/zh-CN/reference/session-management-compaction"
-                ]
-              },
-              {
-                "group": "开发者设置",
-                "pages": [
-                  "simpleclaw/zh-CN/start/setup"
-                ]
-              },
-              {
-                "group": "文档元信息",
-                "pages": [
-                  "simpleclaw/zh-CN/start/hubs",
-                  "simpleclaw/zh-CN/start/docs-directory"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "language": "ja",
-        "tabs": [
-          {
-            "tab": "はじめに",
-            "groups": [
-              {
-                "group": "概要",
-                "pages": [
-                  "simpleclaw/ja-JP/index"
-                ]
-              },
-              {
-                "group": "初回セットアップ",
-                "pages": [
-                  "simpleclaw/ja-JP/start/getting-started",
-                  "simpleclaw/ja-JP/start/wizard"
                 ]
               }
             ]

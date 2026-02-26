@@ -11,29 +11,29 @@ Manage Docker-based sandbox containers for isolated agent execution.
 
 ## Overview
 
-OpenClaw can run agents in isolated Docker containers for security. The `sandbox` commands help you manage these containers, especially after updates or configuration changes.
+SimpleClaw can run agents in isolated Docker containers for security. The `sandbox` commands help you manage these containers, especially after updates or configuration changes.
 
 ## Commands
 
-### `openclaw sandbox explain`
+### `simpleclaw sandbox explain`
 
 Inspect the **effective** sandbox mode/scope/workspace access, sandbox tool policy, and elevated gates (with fix-it config key paths).
 
 ```bash
-openclaw sandbox explain
-openclaw sandbox explain --session agent:main:main
-openclaw sandbox explain --agent work
-openclaw sandbox explain --json
+simpleclaw sandbox explain
+simpleclaw sandbox explain --session agent:main:main
+simpleclaw sandbox explain --agent work
+simpleclaw sandbox explain --json
 ```
 
-### `openclaw sandbox list`
+### `simpleclaw sandbox list`
 
 List all sandbox containers with their status and configuration.
 
 ```bash
-openclaw sandbox list
-openclaw sandbox list --browser  # List only browser containers
-openclaw sandbox list --json     # JSON output
+simpleclaw sandbox list
+simpleclaw sandbox list --browser  # List only browser containers
+simpleclaw sandbox list --json     # JSON output
 ```
 
 **Output includes:**
@@ -44,16 +44,16 @@ openclaw sandbox list --json     # JSON output
 - Idle time (time since last use)
 - Associated session/agent
 
-### `openclaw sandbox recreate`
+### `simpleclaw sandbox recreate`
 
 Remove sandbox containers to force recreation with updated images/config.
 
 ```bash
-openclaw sandbox recreate --all                # Recreate all containers
-openclaw sandbox recreate --session main       # Specific session
-openclaw sandbox recreate --agent mybot        # Specific agent
-openclaw sandbox recreate --browser            # Only browser containers
-openclaw sandbox recreate --all --force        # Skip confirmation
+simpleclaw sandbox recreate --all                # Recreate all containers
+simpleclaw sandbox recreate --session main       # Specific session
+simpleclaw sandbox recreate --agent mybot        # Specific agent
+simpleclaw sandbox recreate --browser            # Only browser containers
+simpleclaw sandbox recreate --all --force        # Skip confirmation
 ```
 
 **Options:**
@@ -72,14 +72,14 @@ openclaw sandbox recreate --all --force        # Skip confirmation
 
 ```bash
 # Pull new image
-docker pull openclaw-sandbox:latest
-docker tag openclaw-sandbox:latest openclaw-sandbox:bookworm-slim
+docker pull simpleclaw-sandbox:latest
+docker tag simpleclaw-sandbox:latest simpleclaw-sandbox:bookworm-slim
 
 # Update config to use new image
 # Edit config: agents.defaults.sandbox.docker.image (or agents.list[].sandbox.docker.image)
 
 # Recreate containers
-openclaw sandbox recreate --all
+simpleclaw sandbox recreate --all
 ```
 
 ### After changing sandbox configuration
@@ -88,22 +88,22 @@ openclaw sandbox recreate --all
 # Edit config: agents.defaults.sandbox.* (or agents.list[].sandbox.*)
 
 # Recreate to apply new config
-openclaw sandbox recreate --all
+simpleclaw sandbox recreate --all
 ```
 
 ### After changing setupCommand
 
 ```bash
-openclaw sandbox recreate --all
+simpleclaw sandbox recreate --all
 # or just one agent:
-openclaw sandbox recreate --agent family
+simpleclaw sandbox recreate --agent family
 ```
 
 ### For a specific agent only
 
 ```bash
 # Update only one agent's containers
-openclaw sandbox recreate --agent alfred
+simpleclaw sandbox recreate --agent alfred
 ```
 
 ## Why is this needed?
@@ -114,14 +114,14 @@ openclaw sandbox recreate --agent alfred
 - Containers are only pruned after 24h of inactivity
 - Regularly-used agents keep old containers running indefinitely
 
-**Solution:** Use `openclaw sandbox recreate` to force removal of old containers. They'll be recreated automatically with current settings when next needed.
+**Solution:** Use `simpleclaw sandbox recreate` to force removal of old containers. They'll be recreated automatically with current settings when next needed.
 
-Tip: prefer `openclaw sandbox recreate` over manual `docker rm`. It uses the
+Tip: prefer `simpleclaw sandbox recreate` over manual `docker rm`. It uses the
 Gateway’s container naming and avoids mismatches when scope/session keys change.
 
 ## Configuration
 
-Sandbox settings live in `~/.openclaw/openclaw.json` under `agents.defaults.sandbox` (per-agent overrides go in `agents.list[].sandbox`):
+Sandbox settings live in `~/.simpleclaw/simpleclaw.json` under `agents.defaults.sandbox` (per-agent overrides go in `agents.list[].sandbox`):
 
 ```jsonc
 {
@@ -131,8 +131,8 @@ Sandbox settings live in `~/.openclaw/openclaw.json` under `agents.defaults.sand
         "mode": "all", // off, non-main, all
         "scope": "agent", // session, agent, shared
         "docker": {
-          "image": "openclaw-sandbox:bookworm-slim",
-          "containerPrefix": "openclaw-sbx-",
+          "image": "simpleclaw-sandbox:bookworm-slim",
+          "containerPrefix": "simpleclaw-sbx-",
           // ... more Docker options
         },
         "prune": {

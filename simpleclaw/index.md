@@ -1,58 +1,41 @@
 ---
-summary: "OpenClaw is a multi-channel gateway for AI agents that runs on any OS."
+summary: "SimpleClaw is a private multi-channel AI gateway with a curated skill marketplace."
 read_when:
-  - Introducing OpenClaw to newcomers
-title: "OpenClaw"
+  - Introducing SimpleClaw to newcomers
+title: "SimpleClaw"
 ---
 
-# OpenClaw 🦞
+# SimpleClaw
 
 <p align="center">
-    <img
-        src="/assets/openclaw-logo-text-dark.png"
-        alt="OpenClaw"
-        width="500"
-        class="dark:hidden"
-    />
-    <img
-        src="/assets/openclaw-logo-text.png"
-        alt="OpenClaw"
-        width="500"
-        class="hidden dark:block"
-    />
-</p>
-
-> _"EXFOLIATE! EXFOLIATE!"_ — A space lobster, probably
-
-<p align="center">
-  <strong>Any OS gateway for AI agents across WhatsApp, Telegram, Discord, iMessage, and more.</strong><br />
-  Send a message, get an agent response from your pocket. Plugins add Mattermost and more.
+  <strong>Private AI gateway with WebSocket and chat completions support, multi-channel messaging, and a curated skill marketplace.</strong><br />
+  Run a single Gateway process on your own infrastructure and connect AI agents to your messaging apps.
 </p>
 
 <Columns>
   <Card title="Get Started" href="/start/getting-started" icon="rocket">
-    Install OpenClaw and bring up the Gateway in minutes.
+    Install SimpleClaw and bring up the Gateway in minutes.
   </Card>
   <Card title="Run the Wizard" href="/start/wizard" icon="sparkles">
-    Guided setup with `openclaw onboard` and pairing flows.
+    Guided setup with `simpleclaw onboard` and pairing flows.
   </Card>
-  <Card title="Open the Control UI" href="/web/control-ui" icon="layout-dashboard">
-    Launch the browser dashboard for chat, config, and sessions.
+  <Card title="Marketplace" href="/tools/marketplace" icon="store">
+    Browse and install skills from the private marketplace.
   </Card>
 </Columns>
 
-## What is OpenClaw?
+## What is SimpleClaw?
 
-OpenClaw is a **self-hosted gateway** that connects your favorite chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
+SimpleClaw is a **private, self-hosted gateway** that connects your chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI agents. You run a single Gateway process on your own machine (or a server), and it bridges your messaging apps to an always-available AI assistant.
 
-**Who is it for?** Developers and power users who want a personal AI assistant they can message from anywhere — without giving up control of their data or relying on a hosted service.
+SimpleClaw extends the core gateway with a **private marketplace** backed by Google Artifact Registry (GAR) and Google Cloud Storage (GCS), giving you a curated catalog of vetted skills and plugins.
 
 **What makes it different?**
 
 - **Self-hosted**: runs on your hardware, your rules
 - **Multi-channel**: one Gateway serves WhatsApp, Telegram, Discord, and more simultaneously
 - **Agent-native**: built for coding agents with tool use, sessions, memory, and multi-agent routing
-- **Open source**: MIT licensed, community-driven
+- **Private marketplace**: curated skills and plugins distributed via GAR and GCS
 
 **What do you need?** Node 22+, an API key (Anthropic recommended), and 5 minutes.
 
@@ -64,8 +47,7 @@ flowchart LR
   B --> C["Pi agent"]
   B --> D["CLI"]
   B --> E["Web Control UI"]
-  B --> F["macOS app"]
-  B --> G["iOS and Android nodes"]
+  B --> F["Marketplace"]
 ```
 
 The Gateway is the single source of truth for sessions, routing, and channel connections.
@@ -88,28 +70,28 @@ The Gateway is the single source of truth for sessions, routing, and channel con
   <Card title="Web Control UI" icon="monitor">
     Browser dashboard for chat, config, sessions, and nodes.
   </Card>
-  <Card title="Mobile nodes" icon="smartphone">
-    Pair iOS and Android nodes with Canvas support.
+  <Card title="Skill marketplace" icon="store">
+    Install curated skills and plugins from the private catalog.
   </Card>
 </Columns>
 
 ## Quick start
 
 <Steps>
-  <Step title="Install OpenClaw">
+  <Step title="Install SimpleClaw">
     ```bash
-    npm install -g openclaw@latest
+    npm install -g simpleclaw --registry https://us-central1-npm.pkg.dev/jarvis-486806/simpleclaw-npm
     ```
   </Step>
   <Step title="Onboard and install the service">
     ```bash
-    openclaw onboard --install-daemon
+    simpleclaw onboard --install-daemon
     ```
   </Step>
   <Step title="Pair WhatsApp and start the Gateway">
     ```bash
-    openclaw channels login
-    openclaw gateway --port 18789
+    simpleclaw channels login
+    simpleclaw gateway --port 18789
     ```
   </Step>
 </Steps>
@@ -123,15 +105,11 @@ Open the browser Control UI after the Gateway starts.
 - Local default: [http://127.0.0.1:18789/](http://127.0.0.1:18789/)
 - Remote access: [Web surfaces](/web) and [Tailscale](/gateway/tailscale)
 
-<p align="center">
-  <img src="whatsapp-openclaw.jpg" alt="OpenClaw" width="420" />
-</p>
-
 ## Configuration (optional)
 
-Config lives at `~/.openclaw/openclaw.json`.
+Config lives at `~/.simpleclaw/simpleclaw.json`.
 
-- If you **do nothing**, OpenClaw uses the bundled Pi binary in RPC mode with per-sender sessions.
+- If you **do nothing**, SimpleClaw uses the bundled Pi binary in RPC mode with per-sender sessions.
 - If you want to lock it down, start with `channels.whatsapp.allowFrom` and (for groups) mention rules.
 
 Example:
@@ -144,7 +122,7 @@ Example:
       groups: { "*": { requireMention: true } },
     },
   },
-  messages: { groupChat: { mentionPatterns: ["@openclaw"] } },
+  messages: { groupChat: { mentionPatterns: ["@simpleclaw"] } },
 }
 ```
 
@@ -163,8 +141,8 @@ Example:
   <Card title="Channels" href="/channels/telegram" icon="message-square">
     Channel-specific setup for WhatsApp, Telegram, Discord, and more.
   </Card>
-  <Card title="Nodes" href="/nodes" icon="smartphone">
-    iOS and Android nodes with pairing and Canvas.
+  <Card title="Marketplace" href="/tools/marketplace" icon="store">
+    Browse and install skills from the curated catalog.
   </Card>
   <Card title="Help" href="/help" icon="life-buoy">
     Common fixes and troubleshooting entry point.
